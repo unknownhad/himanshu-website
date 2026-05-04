@@ -1,0 +1,25 @@
+name = "himanshu-home"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Custom domain
+routes = [
+  { pattern = "himanshuanand.com/*", zone_name = "himanshuanand.com" }
+]
+
+# KV namespace for site content
+# Create with: wrangler kv:namespace create SITE_KV
+# Then paste the id below
+[[kv_namespaces]]
+binding = "SITE_KV"
+id = "YOUR_KV_NAMESPACE_ID_HERE"
+
+# Preview KV for local dev
+# Create with: wrangler kv:namespace create SITE_KV --preview
+# [[kv_namespaces]]
+# binding = "SITE_KV"
+# preview_id = "YOUR_PREVIEW_KV_ID_HERE"
+
+[vars]
+# Set to a random secret for cache-busting endpoint
+# ADMIN_SECRET = "change-me-to-something-random"

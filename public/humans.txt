@@ -1,0 +1,19 @@
+/* TEAM */
+Name: Himanshu Anand
+Role: Security Researcher & Engineer
+Site: https://himanshuanand.com
+Twitter: @anand_himanshu
+GitHub: unknownhad
+From: Earth
+
+/* SITE */
+Platform: Cloudflare Workers
+Language: HTML, CSS, JavaScript
+Font: Inter, JetBrains Mono
+Colors: #4ade80 (muted green), #0a0a0f (dark), #e2e8f0 (light)
+Standards: HTML5, CSS3, ES2022
+Security: security.txt, Turnstile, CSP, HSTS
+
+/* NOTE */
+If you're reading this, you probably know what you're doing.
+Hire me, collaborate, or just say hi: me[at]himanshuanand.com

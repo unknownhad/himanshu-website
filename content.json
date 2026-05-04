@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "tagline": "Security Researcher & Engineer",
+    "current": "Cloudflare",
+    "achievement": "3\u00d7 DEF CON Finalist",
+    "ctf_team": "Water Paddlers CTF",
+    "ctf_url": "https://ctftime.org/user/144614"
+  },
+
+  "about": {
+    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams. I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1\u20133), built IPS/IDS signatures, and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023\u20132025).</p>",
+    "skills": [
+      "Malware Analysis", "Reverse Engineering", "WAF Engineering",
+      "Client-Side Security", "Threat Intelligence", "Exploit Analysis",
+      "IPS/IDS", "Fuzzing", "Cloud Security", "LLM / AI Security", "CTF"
+    ]
+  },
+
+  "experience": [
+    {
+      "role": "Firewall Security Analyst",
+      "company": "Cloudflare",
+      "period": "Current",
+      "desc": "WAF rule engineering, zero-day response, client-side threat research, and AI-powered detection."
+    },
+    {
+      "role": "Security Researcher",
+      "company": "Symantec (now Broadcom)",
+      "period": "Previous",
+      "desc": "Malware analysis, SOC operations, IPS/IDS rule development, exploit analysis, and threat intelligence."
+    }
+  ],
+
+  "stats": [
+    { "num": "10+", "label": "Years" },
+    { "num": "30+", "label": "Articles" },
+    { "num": "2", "label": "Patents" },
+    { "num": "3\u00d7", "label": "DEF CON Finalist" },
+    { "num": "5+", "label": "Conf Talks" }
+  ],
+
+  "employer_posts": [
+    { "title": "AI WAF Detected Ivanti Zero-Day", "url": "https://blog.cloudflare.com/how-cloudflares-ai-waf-proactively-detected-ivanti-connect-secure-critical-zero-day-vulnerability/", "desc": "ML-driven detections in practice.", "tags": ["Cloudflare", "WAF", "Zero-Day"], "featured": true },
+    { "title": "Navigating the Maze of Magecart", "url": "https://blog.cloudflare.com/navigating-the-maze-of-magecart", "desc": "Mitigations and lessons from the field.", "tags": ["Cloudflare", "Magecart"], "featured": true },
+    { "title": "CoinMarketCap Client-Side Attack: A Comprehensive Analysis", "url": "https://cside.dev/blog/coinmarketcap-client-side-attack-a-comprehensive-analysis", "desc": "Deep dive into the compromise chain and mitigations.", "tags": ["c/side", "Client-Side"], "featured": true },
+    { "title": "Confluence Zero-Day (CVE-2022-26134)", "url": "https://blog.cloudflare.com/cloudflare-observations-of-confluence-zero-day-cve-2022-26134/", "desc": "Attack surface and mitigations.", "tags": ["Cloudflare", "CVE"], "featured": true },
+    { "title": "How Traffic Hijacking and Affiliate Fraud Harm Websites", "url": "https://cside.dev/blog/how-traffic-hijacking-and-affiliate-fraud-can-harm-websites-and-users", "desc": "How malicious actors hijack traffic and commit affiliate fraud \u2014 and defenses that work.", "tags": ["c/side", "Fraud"], "featured": true },
+    { "title": "WAF Mitigations for Spring4Shell", "url": "https://blog.cloudflare.com/waf-mitigations-spring4shell/", "desc": "Rule design and tuning.", "tags": ["Cloudflare"] },
+    { "title": "Protected from Atlassian CVE-2023-22515", "url": "https://blog.cloudflare.com/all-cloudflare-customers-protected-atlassian-cve-2023-22515/", "desc": "Rapid response at scale.", "tags": ["Cloudflare"] },
+    { "title": "Top Exploited Vulns of 2022", "url": "https://blog.cloudflare.com/unmasking-the-top-exploited-vulnerabilities-of-2022/", "desc": "Trends from global traffic.", "tags": ["Cloudflare"] },
+    { "title": "Is Relying on IoCs Secure Enough?", "url": "https://cside.dev/blog/is-relying-on-indicators-of-compromise-secure-enough", "desc": "Limits of IoCs and how to augment them.", "tags": ["c/side"] },
+    { "title": "Weaponized Google OAuth Triggers Malicious WebSocket", "url": "https://cside.dev/blog/weaponized-google-oauth-triggers-malicious-websocket", "desc": "OAuth abuse patterns on the client side.", "tags": ["c/side"] },
+    { "title": "Ruthless Client-Side Attacks with ClickFix", "url": "https://cside.dev/blog/ruthless-client-side-attacks-targeting-multiple-platforms-with-clickfix", "desc": "Multi-platform targeting via UI manipulation.", "tags": ["c/side"] },
+    { "title": "PWA Injection Scam Targets Mobile Users", "url": "https://cside.dev/blog/chinese-adult-content-scam-targets-mobile-users-through-pwa-injection", "desc": "Abusing web app install flows for fraud.", "tags": ["c/side"] },
+    { "title": "150k+ Sites Hit by Full-Page Hijack", "url": "https://cside.dev/blog/over-150k-websites-hit-by-full-page-hijack-linking-to-chinese-gambling-sites", "desc": "Mass injections and redirect monetization.", "tags": ["c/side"] },
+    { "title": "35k+ Sites in Gambling Scam Hijack", "url": "https://cside.dev/blog/over-35-000-websites-targeted-in-full-page-hijack-linking-to-a-chinese-language-gambling-scam", "desc": "Campaign evolution and blockers.", "tags": ["c/side"] },
+    { "title": "ScriptAPI[.]dev Attack on Gov/Uni Sites", "url": "https://cside.dev/blog/government-and-university-websites-targeted-in-scriptapi-dev-client-side-attack", "desc": "Third-party supply chain risk realized.", "tags": ["c/side"] },
+    { "title": "The Cost of False Positives", "url": "https://cside.dev/blog/the-cost-of-false-positives", "desc": "Operational impact and how we adapted.", "tags": ["c/side"] },
+    { "title": "5,000+ WordPress Sites in WP3[.]XYZ Attack", "url": "https://cside.dev/blog/over-5k-wordpress-sites-caught-in-wp3xyz-malware-attack", "desc": "Indicators and containment.", "tags": ["c/side"] },
+    { "title": "New Client-Side Attack Only a Proxy Could Stop", "url": "https://cside.dev/blog/new-client-side-attack-only-a-proxy-could-stop", "desc": "Where inline protections fall short.", "tags": ["c/side"] },
+    { "title": "10,000 WordPress Sites Delivering Malware", "url": "https://cside.dev/blog/10-000-wordpress-websites-found-delivering-macos-and-microsoft-malware", "desc": "Cross-platform payload delivery.", "tags": ["c/side"] },
+    { "title": "Kuwait E-commerce Site Used for Skimming", "url": "https://cside.dev/blog/kuwait-ecommerce-site-is-being-used-to-facilitate-client-side-skimming-attacks", "desc": "Infrastructure re-use and takedown paths.", "tags": ["c/side"] },
+    { "title": "New Magecart Attack Code Revealed", "url": "https://cside.dev/blog/new-magecart-attack-code-revealed", "desc": "Obfuscation tricks and exfil flows.", "tags": ["c/side"] },
+    { "title": "3rd-Party Script Attack: artifyau[.]com & quantifymy[.]com", "url": "https://cside.dev/blog/new-3rd-party-js-script-attack-found-artifyaucom-and-quantifymycom", "desc": "Third-party trust boundaries tested.", "tags": ["c/side"] },
+    { "title": "Cisco Client-Side Magecart Attack", "url": "https://cside.dev/blog/cisco-client-side-magecart-javascript-attack", "desc": "Merchant-side script compromise analysis.", "tags": ["c/side"] },
+    { "title": "Ticketmaster Data Breach: D\u00e9j\u00e0 Vu", "url": "https://cside.dev/blog/ticketmaster-data-breach-deja-vu-what-you-need-to-know", "desc": "Repeat patterns, repeat impact.", "tags": ["c/side"] },
+    { "title": "Vulnerable Joomla! Installation Under Attack", "url": "https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=2cdec753-d646-45fd-ae7b-6aacddf0d569&CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&tab=librarydocuments", "desc": "Field report on active exploitation.", "tags": ["Symantec"] },
+    { "title": "One-Click Fraudsters Learn Chinese", "url": "https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=57b37768-7b7a-46ba-bfec-0099437919f3&CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&tab=librarydocuments", "desc": "Localization tactics in fraud ops.", "tags": ["Symantec"] },
+    { "title": "Facebook Scam \u2192 Nuclear Exploit Kit", "url": "https://community.broadcom.com/symantecenterprise/viewdocument/facebook-scam-leads-to-nuclear-expl", "desc": "Social lures meet exploit delivery.", "tags": ["Symantec"] }
+  ],
+
+  "talks": [
+    { "title": "Area41 2024 \u2014 Public Cloud Public Attacks", "desc": "A summary of attacks seen by Cloud Intel.", "pdf": "https://pub-a30995ed030c4d44b481c4d222933301.r2.dev/Public%20Cloud%20public%20attacks_%20A%20summary%20of%20attacks%20seen%20by%20Cloud%20Intel.pdf", "video": "https://www.youtube.com/embed/3eicVoU16B0" },
+    { "title": "Black Hat Asia 2024 \u2014 CalMal: Malware Clustering via Unsupervised ML", "desc": "Arsenal demo of unsupervised malware family classification.", "pdf": "https://pub-a30995ed030c4d44b481c4d222933301.r2.dev/BH-AS24-PPT-Arsenal.pdf", "github": "https://github.com/unknownhad/CalMal" },
+    { "title": "VB2017 \u2014 The Router of All Evil", "desc": "Router exploitation and botnet infrastructure analysis.", "video": "https://www.youtube.com/embed/4VzXp4VGpoc" },
+    { "title": "VB2016 \u2014 One-Click Fileless Infection", "desc": "Fileless malware techniques and detection challenges.", "video": "https://www.youtube.com/embed/EIIFly_iR8Y" }
+  ],
+
+  "media": [
+    { "outlet": "TechCrunch", "title": "WordPress Sites Hijacked to Push Malware", "url": "https://techcrunch.com/2025/01/29/hackers-are-hijacking-wordpress-sites-to-push-windows-and-mac-malware/" },
+    { "outlet": "Computerworld", "title": "Short-lived Certificates \u2014 What IT Should Know", "url": "https://www.computerworld.com/article/3631627/website-certificates-that-expire-every-six-weeks-what-it-should-know.html" },
+    { "outlet": "The CTO Club", "title": "Crush Your New Gig in Cybersecurity From Day One", "url": "https://thectoclub.com/team-management-leadership/onboarding-cybersecurity-roles-like-security-engineer/" },
+    { "outlet": "Cloudflare TV", "title": "Security Week \u2014 Magecart Attacks", "url": "https://cloudflare.tv/shows/security-week/what-launched-today-monday-march-4/dgMY99gD" }
+  ],
+
+  "patents": [
+    { "title": "Securing Contactless Cards from Unauthorized Payments", "url": "https://patents.justia.com/patent/11087580", "number": "US 11,087,580" },
+    { "title": "Ransomware-Locked Data Decryption via Key Transposition", "url": "https://patents.justia.com/patent/10554688", "number": "US 10,554,688" }
+  ],
+
+  "papers": [
+    { "title": "The Increased Use of PowerShell in Attacks", "url": "https://docs.broadcom.com/doc/increased-use-of-powershell-in-attacks-16-en", "publisher": "Symantec / Broadcom" },
+    { "title": "Living off the Land & Fileless Techniques", "url": "https://docs.broadcom.com/doc/istr-living-off-the-land-and-fileless-attack-techniques-en", "publisher": "ISTR threat landscape report" }
+  ],
+
+  "projects": [
+    { "title": "Prompt Injection Detection", "url": "https://promptinjection.himanshuanand.com/", "desc": "AI firewall for detecting & preventing prompt injection attacks.", "tags": ["AI", "Workers"] },
+    { "title": "CalMal", "url": "https://github.com/unknownhad/CalMal", "desc": "Unsupervised clustering of malware families via ML.", "tags": ["ML", "Malware"] },
+    { "title": "Cloud Intel", "url": "https://cloudintel.info/", "desc": "High-fidelity public cloud threat intel and atomic IOCs.", "tags": ["Threat Intel", "API"] },
+    { "title": "Personal LLM", "url": "https://llm.himanshuanand.com/", "desc": "LLaMA-based personal model on Cloudflare Workers.", "tags": ["LLM", "Workers"] },
+    { "title": "Legally Blocked", "url": "https://legallyblocked.website/", "desc": "Tracking blocked websites and apps worldwide.", "tags": ["Censorship"] },
+    { "title": "UK Strike Calendar", "url": "https://ukstrikecalendar.himanshuanand.com/", "desc": "Calendar built with ChatGPT & Cloudflare Workers.", "tags": ["Workers"] }
+  ],
+
+  "social": [
+    { "name": "Blog", "url": "https://blog.himanshuanand.com", "icon": "blog" },
+    { "name": "GitHub", "url": "https://github.com/unknownhad", "icon": "github" },
+    { "name": "X / Twitter", "url": "https://twitter.com/anand_himanshu", "icon": "twitter" },
+    { "name": "Mastodon", "url": "https://infosec.exchange/@n00b/", "icon": "mastodon" },
+    { "name": "CTFtime", "url": "https://ctftime.org/user/144614", "icon": "flag" }
+  ]
+}

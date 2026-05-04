@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Himanshu Anand — Security Researcher & Engineer. Threat intel, reverse engineering, client-side security, and WAF engineering.">
+  <meta name="keywords" content="Cyber Security, Malware, Exploits, Reverse Engineering, Fuzzing, WAF, Client-Side Security, Threat Intelligence">
+  <meta name="author" content="Himanshu Anand">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://himanshuanand.com/">
+  <meta property="og:title" content="Himanshu Anand — Security Researcher & Engineer">
+  <meta property="og:description" content="Threat intel, reverse engineering, client-side security, and WAF engineering.">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Himanshu Anand — Security Researcher & Engineer</title>
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4ade80">
+  <link rel="author" href="/humans.txt">
+
+  <!-- Single font: JetBrains Mono for terminal accents -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========== DESIGN TOKENS ========== */
+    :root {
+      --bg:          #0a0a0f;
+      --bg-alt:      #0f1117;
+      --card:        #13151c;
+      --card-hover:  #181b24;
+      --text:        #e2e8f0;
+      --text-muted:  #8892a4;
+      --accent:      #4ade80;
+      --accent-dim:  rgba(74, 222, 128, 0.12);
+      --accent-ring: rgba(74, 222, 128, 0.3);
+      --border:      #1e2330;
+      --link:        #4ade80;
+      --link-hover:  #86efac;
+
+      --radius:      12px;
+      --radius-sm:   8px;
+      --shadow:      0 4px 16px rgba(0,0,0,0.3);
+
+      --font-body:   'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:   'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+      --container:   68ch;
+      --nav-h:       56px;
+    }
+
+    /* Light mode override */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg:         #f8f9fb;
+        --bg-alt:     #f1f3f7;
+        --card:       #ffffff;
+        --card-hover: #f5f7fa;
+        --text:       #1a1d26;
+        --text-muted: #5a6377;
+        --accent:     #16a34a;
+        --accent-dim: rgba(22, 163, 74, 0.08);
+        --accent-ring:rgba(22, 163, 74, 0.25);
+        --border:     #e2e5ec;
+        --link:       #16a34a;
+        --link-hover: #15803d;
+        --shadow:     0 4px 16px rgba(0,0,0,0.06);
+      }
+    }
+
+    /* ========== RESET ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 1rem); }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--link); text-decoration: none; transition: color .15s; }
+    a:hover { color: var(--link-hover); }
+
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (prefers-color-scheme: light) {
+      nav { background: rgba(248, 249, 251, 0.88); }
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      max-width: var(--container);
+      width: 100%;
+      padding: 0 1rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent);
+      margin-right: auto;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: color .15s, background .15s;
+    }
+    .nav-link:hover { color: var(--accent); background: var(--accent-dim); }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 4rem 1rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(74,222,128,0.06), transparent),
+        var(--bg);
+    }
+    .hero-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 24px rgba(74,222,128,0.15);
+      margin: 0 auto 1.25rem;
+      object-fit: cover;
+    }
+    .hero h1 {
+      font-family: var(--font-mono);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.35rem;
+    }
+    .hero h1 .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 4px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-tagline {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .hero-tagline .role { color: var(--accent); font-weight: 600; }
+    .hero-now {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .hero-now .prompt { color: var(--accent); }
+    .hero-now .val { color: var(--text); }
+    .hero-ctas {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all .15s;
+      cursor: pointer;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); text-decoration: none; }
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0f;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover { background: var(--link-hover); color: #0a0a0f; }
+    .btn svg { width: 16px; height: 16px; }
+
+    /* ========== STATS STRIP ========== */
+    .stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      padding: 2rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ========== CONTAINER ========== */
+    .container {
+      max-width: var(--container);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ========== SECTIONS ========== */
+    .section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: 0; }
+
+    .section-header {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .section-header .prompt { color: var(--accent); }
+
+    .section h2 {
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    /* ========== ABOUT ========== */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .about-text {
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .about-text strong { color: var(--text); }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(74,222,128,0.15);
+    }
+    @media (prefers-color-scheme: light) {
+      .skill-tag { color: #15803d; }
+    }
+
+    /* ========== CARDS ========== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .card-grid--two { grid-template-columns: 1fr; }
+    @media (min-width: 640px) {
+      .card-grid--two { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      transition: border-color .15s, background .15s, transform .15s;
+    }
+    .card:hover {
+      border-color: rgba(74,222,128,0.25);
+      background: var(--card-hover);
+      transform: translateY(-1px);
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .card-title a { color: var(--text); }
+    .card-title a:hover { color: var(--accent); }
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .card-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ========== TOGGLE (show all) ========== */
+    .toggle-section { display: none; }
+    .toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(74,222,128,0.2);
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      display: inline-block;
+      transition: background .15s;
+    }
+    .toggle-btn:hover { background: rgba(74,222,128,0.18); }
+
+    /* ========== SOCIAL ROW ========== */
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .social-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all .15s;
+    }
+    .social-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); text-decoration: none; }
+    .social-chip svg { width: 16px; height: 16px; }
+
+    /* ========== TALKS — VIDEOS ========== */
+    .video-wrap {
+      margin-top: 0.75rem;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .video-wrap iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+    }
+
+    /* ========== TIMELINE (Experience) ========== */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 1.5rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      transform: translateX(-4px);
+    }
+    .timeline-role {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .timeline-company {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .timeline-period {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ========== CONTACT FORM ========== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color .15s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    .contact-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .contact-info-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .contact-info-item a { color: var(--text); }
+    .contact-info-item a:hover { color: var(--accent); }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ========== BACK TO TOP ========== */
+    .btt {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #0a0a0f;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .2s, transform .2s;
+      z-index: 90;
+    }
+    .btt.visible { opacity: 1; transform: translateY(0); }
+    .btt svg { width: 18px; height: 18px; }
+
+    /* ========== FADE-IN ANIMATION ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 480px) {
+      .hero { padding: 2.5rem 1rem 2rem; }
+      .stats { gap: 1rem 1.5rem; padding: 1.5rem 1rem; }
+      .stat-num { font-size: 18px; }
+      .section { padding: 2rem 0; }
+      .nav-link { font-size: 12px; padding: 4px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-brand">~/himanshu</span>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#research">Research</a>
+      <a class="nav-link" href="#talks">Talks</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#patents">Patents</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <img
+      class="hero-avatar"
+      src="https://avatars.githubusercontent.com/u/441098?v=4"
+      alt="Himanshu Anand"
+      width="100" height="100"
+      loading="eager"
+    >
+    <h1>Himanshu Anand<span class="cursor"></span></h1>
+    <p class="hero-tagline"><span class="role">Security Researcher & Engineer</span></p>
+    <p class="hero-now">
+      <span class="prompt">$</span> cat ~/.now &rarr;
+      <span class="val">Cloudflare</span> &middot;
+      3&times; DEF CON Finalist &middot;
+      <a href="https://ctftime.org/user/144614" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Water Paddlers CTF</a>
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://blog.himanshuanand.com" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.855z"/></svg>
+        Blog
+      </a>
+      <a class="btn" href="https://github.com/unknownhad" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://twitter.com/anand_himanshu" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X / Twitter
+      </a>
+      <a class="btn" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Contact
+      </a>
+    </div>
+  </header>
+
+  <!-- ========== STATS ========== -->
+  <div class="stats fade-in">
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Articles</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Patents</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3&times;</div>
+      <div class="stat-label">DEF CON Finalist</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Conf Talks</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> cat ~/about.md</div>
+      <h2>About</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams.
+            I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>,
+            <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.
+          </p>
+          <p style="margin-top:0.75rem;">
+            I've worked in SOCs (Tier 1–3), built IPS/IDS signatures, and currently focus on
+            web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>.
+            I compete with <a href="https://ctftime.org/user/144614" target="_blank" rel="noopener noreferrer">Water Paddlers</a>
+            in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023–2025).
+          </p>
+          <div class="skills-grid" style="margin-top:1rem;">
+            <span class="skill-tag">Malware Analysis</span>
+            <span class="skill-tag">Reverse Engineering</span>
+            <span class="skill-tag">WAF Engineering</span>
+            <span class="skill-tag">Client-Side Security</span>
+            <span class="skill-tag">Threat Intelligence</span>
+            <span class="skill-tag">Exploit Analysis</span>
+            <span class="skill-tag">IPS/IDS</span>
+            <span class="skill-tag">Fuzzing</span>
+            <span class="skill-tag">Cloud Security</span>
+            <span class="skill-tag">LLM / AI Security</span>
+            <span class="skill-tag">CTF</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EXPERIENCE (Timeline) ========== -->
+    <section id="experience" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> cat ~/experience.log</div>
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-role">Firewall Security Analyst</div>
+          <div class="timeline-company">Cloudflare</div>
+          <div class="timeline-period">Current</div>
+          <div class="timeline-desc">WAF rule engineering, zero-day response, client-side threat research, and AI-powered detection.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">Security Researcher</div>
+          <div class="timeline-company">Symantec (now Broadcom)</div>
+          <div class="timeline-period">Previous</div>
+          <div class="timeline-desc">Malware analysis, SOC operations, IPS/IDS rule development, exploit analysis, and threat intelligence.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED POSTS (Personal Blog) ========== -->
+    <section id="research" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> ls ~/research/featured/</div>
+      <h2>Featured Research</h2>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-title"><a href="https://blog.himanshuanand.com/2026/05/i-read-openssl-for-fun-and-found-a-nonce-leak/" target="_blank" rel="noopener noreferrer">I Read OpenSSL for Fun and Found a Nonce Leak</a></span>
+          <p class="card-desc">Found a single-character logic bug in OpenSSL 4.0.0 that leaks cryptographic randomness onto the stack on every signing call.</p>
+          <div class="card-meta"><span class="card-tag">Crypto</span><span class="card-tag">Post-quantum</span><span>2026</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://blog.himanshuanand.com/2025/11/how-i-found-a-europa.eu-compromise-thanks-to-cricket/" target="_blank" rel="noopener noreferrer">How I Found a europa.eu Compromise (Thanks to Cricket)</a></span>
+          <p class="card-desc">Stumbled on a europa.eu subdomain abused for blackhat SEO while looking for a cricket stream. Reported to CERT-EU.</p>
+          <div class="card-meta"><span class="card-tag">SEO Poisoning</span><span class="card-tag">Incident Response</span><span>2025</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://blog.himanshuanand.com/posts/2025-08-10-detecting-llm-prompt-injection/" target="_blank" rel="noopener noreferrer">Detecting LLM Prompt Injection Without Slowing You Down</a></span>
+          <p class="card-desc">A lightweight service and approach to detect prompt injection before your model sees it.</p>
+          <div class="card-meta"><span class="card-tag">AI Security</span><span class="card-tag">LLM</span><span>2025</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://blog.himanshuanand.com/posts/discovered-a-libpng-vulnerability-11-years-after-it-was-patched/" target="_blank" rel="noopener noreferrer">How I (Re)Discovered a Libpng Vulnerability 11 Years Later</a></span>
+          <p class="card-desc">A learning-focused secure code review story that re-finds CVE-2014-9495.</p>
+          <div class="card-meta"><span class="card-tag">CVE</span><span class="card-tag">Code Review</span><span>2025</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://blog.himanshuanand.com/posts/announcingawsattacks/" target="_blank" rel="noopener noreferrer">Introducing AWSAttacks</a></span>
+          <p class="card-desc">A GitHub hub for collecting and sharing AWS threat intelligence.</p>
+          <div class="card-meta"><span class="card-tag">Cloud</span><span class="card-tag">Threat Intel</span></div>
+        </div>
+      </div>
+      <a class="btn" href="https://blog.himanshuanand.com" target="_blank" rel="noopener noreferrer" style="margin-top:1rem;">
+        View all posts &rarr;
+      </a>
+    </section>
+
+    <!-- ========== EMPLOYER BLOG POSTS (5 featured + toggle) ========== -->
+    <section class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> ls ~/published/</div>
+      <h2>Published at Cloudflare, c/side & Symantec</h2>
+
+      <!-- 5 featured -->
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-title"><a href="https://blog.cloudflare.com/how-cloudflares-ai-waf-proactively-detected-ivanti-connect-secure-critical-zero-day-vulnerability/" target="_blank" rel="noopener noreferrer">AI WAF Detected Ivanti Zero-Day</a></span>
+          <p class="card-desc">ML-driven detections in practice.</p>
+          <div class="card-meta"><span class="card-tag">Cloudflare</span><span class="card-tag">WAF</span><span class="card-tag">Zero-Day</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://blog.cloudflare.com/navigating-the-maze-of-magecart" target="_blank" rel="noopener noreferrer">Navigating the Maze of Magecart</a></span>
+          <p class="card-desc">Mitigations and lessons from the field.</p>
+          <div class="card-meta"><span class="card-tag">Cloudflare</span><span class="card-tag">Magecart</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://cside.dev/blog/coinmarketcap-client-side-attack-a-comprehensive-analysis" target="_blank" rel="noopener noreferrer">CoinMarketCap Client-Side Attack: A Comprehensive Analysis</a></span>
+          <p class="card-desc">Deep dive into the compromise chain and mitigations.</p>
+          <div class="card-meta"><span class="card-tag">c/side</span><span class="card-tag">Client-Side</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://blog.cloudflare.com/cloudflare-observations-of-confluence-zero-day-cve-2022-26134/" target="_blank" rel="noopener noreferrer">Confluence Zero-Day (CVE-2022-26134)</a></span>
+          <p class="card-desc">Attack surface and mitigations.</p>
+          <div class="card-meta"><span class="card-tag">Cloudflare</span><span class="card-tag">CVE</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://cside.dev/blog/how-traffic-hijacking-and-affiliate-fraud-can-harm-websites-and-users" target="_blank" rel="noopener noreferrer">How Traffic Hijacking and Affiliate Fraud Harm Websites</a></span>
+          <p class="card-desc">How malicious actors hijack traffic and commit affiliate fraud — and defenses that work.</p>
+          <div class="card-meta"><span class="card-tag">c/side</span><span class="card-tag">Fraud</span></div>
+        </div>
+      </div>
+
+      <!-- Hidden remaining posts -->
+      <div class="toggle-section" id="more-blogs">
+        <div class="card-grid" style="margin-top:0.75rem;">
+          <div class="card">
+            <span class="card-title"><a href="https://blog.cloudflare.com/waf-mitigations-spring4shell/" target="_blank" rel="noopener noreferrer">WAF Mitigations for Spring4Shell</a></span>
+            <p class="card-desc">Rule design and tuning.</p>
+            <div class="card-meta"><span class="card-tag">Cloudflare</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://blog.cloudflare.com/all-cloudflare-customers-protected-atlassian-cve-2023-22515/" target="_blank" rel="noopener noreferrer">Protected from Atlassian CVE-2023-22515</a></span>
+            <p class="card-desc">Rapid response at scale.</p>
+            <div class="card-meta"><span class="card-tag">Cloudflare</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://blog.cloudflare.com/unmasking-the-top-exploited-vulnerabilities-of-2022/" target="_blank" rel="noopener noreferrer">Top Exploited Vulns of 2022</a></span>
+            <p class="card-desc">Trends from global traffic.</p>
+            <div class="card-meta"><span class="card-tag">Cloudflare</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/is-relying-on-indicators-of-compromise-secure-enough" target="_blank" rel="noopener noreferrer">Is Relying on IoCs Secure Enough?</a></span>
+            <p class="card-desc">Limits of IoCs and how to augment them.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/weaponized-google-oauth-triggers-malicious-websocket" target="_blank" rel="noopener noreferrer">Weaponized Google OAuth Triggers Malicious WebSocket</a></span>
+            <p class="card-desc">OAuth abuse patterns on the client side.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/ruthless-client-side-attacks-targeting-multiple-platforms-with-clickfix" target="_blank" rel="noopener noreferrer">Ruthless Client-Side Attacks with ClickFix</a></span>
+            <p class="card-desc">Multi-platform targeting via UI manipulation.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/chinese-adult-content-scam-targets-mobile-users-through-pwa-injection" target="_blank" rel="noopener noreferrer">PWA Injection Scam Targets Mobile Users</a></span>
+            <p class="card-desc">Abusing web app install flows for fraud.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/over-150k-websites-hit-by-full-page-hijack-linking-to-chinese-gambling-sites" target="_blank" rel="noopener noreferrer">150k+ Sites Hit by Full-Page Hijack</a></span>
+            <p class="card-desc">Mass injections and redirect monetization.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/over-35-000-websites-targeted-in-full-page-hijack-linking-to-a-chinese-language-gambling-scam" target="_blank" rel="noopener noreferrer">35k+ Sites in Gambling Scam Hijack</a></span>
+            <p class="card-desc">Campaign evolution and blockers.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/government-and-university-websites-targeted-in-scriptapi-dev-client-side-attack" target="_blank" rel="noopener noreferrer">ScriptAPI[.]dev Attack on Gov/Uni Sites</a></span>
+            <p class="card-desc">Third-party supply chain risk realized.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/the-cost-of-false-positives" target="_blank" rel="noopener noreferrer">The Cost of False Positives</a></span>
+            <p class="card-desc">Operational impact and how we adapted.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/over-5k-wordpress-sites-caught-in-wp3xyz-malware-attack" target="_blank" rel="noopener noreferrer">5,000+ WordPress Sites in WP3[.]XYZ Attack</a></span>
+            <p class="card-desc">Indicators and containment.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/new-client-side-attack-only-a-proxy-could-stop" target="_blank" rel="noopener noreferrer">New Client-Side Attack Only a Proxy Could Stop</a></span>
+            <p class="card-desc">Where inline protections fall short.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/10-000-wordpress-websites-found-delivering-macos-and-microsoft-malware" target="_blank" rel="noopener noreferrer">10,000 WordPress Sites Delivering Malware</a></span>
+            <p class="card-desc">Cross-platform payload delivery.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/kuwait-ecommerce-site-is-being-used-to-facilitate-client-side-skimming-attacks" target="_blank" rel="noopener noreferrer">Kuwait E-commerce Site Used for Skimming</a></span>
+            <p class="card-desc">Infrastructure re-use and takedown paths.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/new-magecart-attack-code-revealed" target="_blank" rel="noopener noreferrer">New Magecart Attack Code Revealed</a></span>
+            <p class="card-desc">Obfuscation tricks and exfil flows.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/new-3rd-party-js-script-attack-found-artifyaucom-and-quantifymycom" target="_blank" rel="noopener noreferrer">3rd-Party Script Attack: artifyau[.]com & quantifymy[.]com</a></span>
+            <p class="card-desc">Third-party trust boundaries tested.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/cisco-client-side-magecart-javascript-attack" target="_blank" rel="noopener noreferrer">Cisco Client-Side Magecart Attack</a></span>
+            <p class="card-desc">Merchant-side script compromise analysis.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://cside.dev/blog/ticketmaster-data-breach-deja-vu-what-you-need-to-know" target="_blank" rel="noopener noreferrer">Ticketmaster Data Breach: D&eacute;j&agrave; Vu</a></span>
+            <p class="card-desc">Repeat patterns, repeat impact.</p>
+            <div class="card-meta"><span class="card-tag">c/side</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=2cdec753-d646-45fd-ae7b-6aacddf0d569&CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&tab=librarydocuments" target="_blank" rel="noopener noreferrer">Vulnerable Joomla! Installation Under Attack</a></span>
+            <p class="card-desc">Field report on active exploitation.</p>
+            <div class="card-meta"><span class="card-tag">Symantec</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=57b37768-7b7a-46ba-bfec-0099437919f3&CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&tab=librarydocuments" target="_blank" rel="noopener noreferrer">One-Click Fraudsters Learn Chinese</a></span>
+            <p class="card-desc">Localization tactics in fraud ops.</p>
+            <div class="card-meta"><span class="card-tag">Symantec</span></div>
+          </div>
+          <div class="card">
+            <span class="card-title"><a href="https://community.broadcom.com/symantecenterprise/viewdocument/facebook-scam-leads-to-nuclear-expl" target="_blank" rel="noopener noreferrer">Facebook Scam &rarr; Nuclear Exploit Kit</a></span>
+            <p class="card-desc">Social lures meet exploit delivery.</p>
+            <div class="card-meta"><span class="card-tag">Symantec</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleBlogs()">Show all 22 posts &darr;</button>
+    </section>
+
+    <!-- ========== TALKS ========== -->
+    <section id="talks" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> ls ~/talks/</div>
+      <h2>Conference Talks</h2>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-title">Area41 2024 &mdash; Public Cloud Public Attacks</span>
+          <p class="card-desc">A summary of attacks seen by Cloud Intel.
+            <a href="https://pub-a30995ed030c4d44b481c4d222933301.r2.dev/Public%20Cloud%20public%20attacks_%20A%20summary%20of%20attacks%20seen%20by%20Cloud%20Intel.pdf" target="_blank" rel="noopener noreferrer">[PDF]</a>
+          </p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/3eicVoU16B0" title="Area41 2024" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-title">Black Hat Asia 2024 &mdash; CalMal: Malware Clustering via Unsupervised ML</span>
+          <p class="card-desc">Arsenal demo of unsupervised malware family classification.
+            <a href="https://pub-a30995ed030c4d44b481c4d222933301.r2.dev/BH-AS24-PPT-Arsenal.pdf" target="_blank" rel="noopener noreferrer">[PDF]</a> &middot;
+            <a href="https://github.com/unknownhad/CalMal" target="_blank" rel="noopener noreferrer">[GitHub]</a>
+          </p>
+        </div>
+        <div class="card">
+          <span class="card-title">VB2017 &mdash; The Router of All Evil</span>
+          <p class="card-desc">Router exploitation and botnet infrastructure analysis.</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/4VzXp4VGpoc" title="VB2017 - The router of all evil" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-title">VB2016 &mdash; One-Click Fileless Infection</span>
+          <p class="card-desc">Fileless malware techniques and detection challenges.</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/EIIFly_iR8Y" title="VB2016 - One-click fileless infection" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MEDIA ========== -->
+    <section class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> grep -r "himanshu" ~/media/</div>
+      <h2>In The Media</h2>
+      <div class="card-grid card-grid--two">
+        <div class="card">
+          <span class="card-title"><a href="https://techcrunch.com/2025/01/29/hackers-are-hijacking-wordpress-sites-to-push-windows-and-mac-malware/" target="_blank" rel="noopener noreferrer">TechCrunch</a></span>
+          <p class="card-desc">WordPress Sites Hijacked to Push Malware</p>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://www.computerworld.com/article/3631627/website-certificates-that-expire-every-six-weeks-what-it-should-know.html" target="_blank" rel="noopener noreferrer">Computerworld</a></span>
+          <p class="card-desc">Short-lived Certificates — What IT Should Know</p>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://thectoclub.com/team-management-leadership/onboarding-cybersecurity-roles-like-security-engineer/" target="_blank" rel="noopener noreferrer">The CTO Club</a></span>
+          <p class="card-desc">Crush Your New Gig in Cybersecurity From Day One</p>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://cloudflare.tv/shows/security-week/what-launched-today-monday-march-4/dgMY99gD" target="_blank" rel="noopener noreferrer">Cloudflare TV</a></span>
+          <p class="card-desc">Security Week — Magecart Attacks</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PATENTS & PAPERS ========== -->
+    <section id="patents" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> ls ~/patents/ ~/papers/</div>
+      <h2>Patents & Papers</h2>
+      <div class="card-grid card-grid--two">
+        <div class="card">
+          <div class="card-meta" style="margin-bottom:0.4rem;"><span class="card-tag">Patent</span></div>
+          <span class="card-title"><a href="https://patents.justia.com/patent/11087580" target="_blank" rel="noopener noreferrer">Securing Contactless Cards from Unauthorized Payments</a></span>
+          <p class="card-desc">US Patent 11,087,580</p>
+        </div>
+        <div class="card">
+          <div class="card-meta" style="margin-bottom:0.4rem;"><span class="card-tag">Patent</span></div>
+          <span class="card-title"><a href="https://patents.justia.com/patent/10554688" target="_blank" rel="noopener noreferrer">Ransomware-Locked Data Decryption via Key Transposition</a></span>
+          <p class="card-desc">US Patent 10,554,688</p>
+        </div>
+        <div class="card">
+          <div class="card-meta" style="margin-bottom:0.4rem;"><span class="card-tag">Paper</span></div>
+          <span class="card-title"><a href="https://docs.broadcom.com/doc/increased-use-of-powershell-in-attacks-16-en" target="_blank" rel="noopener noreferrer">The Increased Use of PowerShell in Attacks</a></span>
+          <p class="card-desc">Symantec / Broadcom whitepaper</p>
+        </div>
+        <div class="card">
+          <div class="card-meta" style="margin-bottom:0.4rem;"><span class="card-tag">Paper</span></div>
+          <span class="card-title"><a href="https://docs.broadcom.com/doc/istr-living-off-the-land-and-fileless-attack-techniques-en" target="_blank" rel="noopener noreferrer">Living off the Land & Fileless Techniques</a></span>
+          <p class="card-desc">ISTR threat landscape report</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> ls ~/projects/</div>
+      <h2>Projects</h2>
+      <div class="card-grid card-grid--two">
+        <div class="card">
+          <span class="card-title"><a href="https://promptinjection.himanshuanand.com/" target="_blank" rel="noopener noreferrer">Prompt Injection Detection</a></span>
+          <p class="card-desc">AI firewall for detecting & preventing prompt injection attacks.</p>
+          <div class="card-meta"><span class="card-tag">AI</span><span class="card-tag">Workers</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://github.com/unknownhad/CalMal" target="_blank" rel="noopener noreferrer">CalMal</a></span>
+          <p class="card-desc">Unsupervised clustering of malware families via ML.</p>
+          <div class="card-meta"><span class="card-tag">ML</span><span class="card-tag">Malware</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://cloudintel.info/" target="_blank" rel="noopener noreferrer">Cloud Intel</a></span>
+          <p class="card-desc">High-fidelity public cloud threat intel and atomic IOCs.</p>
+          <div class="card-meta"><span class="card-tag">Threat Intel</span><span class="card-tag">API</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://llm.himanshuanand.com/" target="_blank" rel="noopener noreferrer">Personal LLM</a></span>
+          <p class="card-desc">LLaMA-based personal model on Cloudflare Workers.</p>
+          <div class="card-meta"><span class="card-tag">LLM</span><span class="card-tag">Workers</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://legallyblocked.website/" target="_blank" rel="noopener noreferrer">Legally Blocked</a></span>
+          <p class="card-desc">Tracking blocked websites and apps worldwide.</p>
+          <div class="card-meta"><span class="card-tag">Censorship</span></div>
+        </div>
+        <div class="card">
+          <span class="card-title"><a href="https://ukstrikecalendar.himanshuanand.com/" target="_blank" rel="noopener noreferrer">UK Strike Calendar</a></span>
+          <p class="card-desc">Calendar built with ChatGPT & Cloudflare Workers.</p>
+          <div class="card-meta"><span class="card-tag">Workers</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SOCIAL ========== -->
+    <section class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> cat ~/.social</div>
+      <h2>Find Me Online</h2>
+      <div class="social-row">
+        <a class="social-chip" href="https://blog.himanshuanand.com" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.855z"/></svg>
+          Blog
+        </a>
+        <a class="social-chip" href="https://github.com/unknownhad" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a class="social-chip" href="https://twitter.com/anand_himanshu" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+        <a class="social-chip" href="https://infosec.exchange/@n00b/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.271-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.432 4.014.535c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.431-2.223.396-5.424.396-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.545-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.41 2.405 1.228l.518.869.519-.869c.533-.818 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/></svg>
+          Mastodon
+        </a>
+        <a class="social-chip" href="https://ctftime.org/user/144614" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          CTFtime
+        </a>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> cat ~/contact.md</div>
+      <h2>Get In Touch</h2>
+      <div class="contact-grid">
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="What's on your mind?"></textarea>
+          </div>
+          <!-- Cloudflare Turnstile placeholder -->
+          <div style="margin-bottom:1rem;">
+            <div id="turnstile-widget" style="height:65px; border:1px dashed var(--border); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:12px; color:var(--text-muted);">
+              Turnstile widget loads here
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+        <div>
+          <ul class="contact-info-list">
+            <li class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <a href="mailto:me@himanshuanand.com">me[at]himanshuanand.com</a>
+            </li>
+            <li class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              <a href="https://github.com/unknownhad" target="_blank" rel="noopener noreferrer">github.com/unknownhad</a>
+            </li>
+            <li class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <a href="https://twitter.com/anand_himanshu" target="_blank" rel="noopener noreferrer">@anand_himanshu</a>
+            </li>
+            <li class="contact-info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              <a href="https://ctftime.org/user/144614" target="_blank" rel="noopener noreferrer">CTFtime: Water Paddlers</a>
+            </li>
+          </ul>
+          <div style="margin-top:1.5rem; padding:1rem; border-radius:var(--radius-sm); background:var(--accent-dim); border:1px solid rgba(74,222,128,0.15);">
+            <p style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted); margin:0;">
+              <span style="color:var(--accent);">$</span> For speaking engagements, research collaboration, or security consulting inquiries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>&copy; 2026 Himanshu Anand &middot; Built with Cloudflare Workers</p>
+  </footer>
+
+  <!-- ========== BACK TO TOP ========== -->
+  <button class="btt" aria-label="Back to top" onclick="window.scrollTo({top:0})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // Toggle employer blogs
+    function toggleBlogs() {
+      const section = document.getElementById('more-blogs');
+      const btn = event.currentTarget;
+      const isVisible = section.style.display === 'block';
+      section.style.display = isVisible ? 'none' : 'block';
+      btn.textContent = isVisible ? 'Show all 22 posts \u2193' : 'Show fewer \u2191';
+    }
+
+    // Back to top visibility
+    const btt = document.querySelector('.btt');
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('visible', window.scrollY > 200);
+    }, { passive: true });
+
+    // Intersection Observer for fade-in
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    }
+
+    // Contact form (placeholder handler — wire to Worker in prod)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Sent!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+        btn.disabled = false;
+        e.target.reset();
+      }, 2000);
+    }
+
+    // Easter egg for fellow security folks
+    console.log('%c$ whoami', 'color:#4ade80; font-family:monospace; font-size:14px; font-weight:bold;');
+    console.log('%cHimanshu Anand — Security Researcher & Engineer', 'color:#e2e8f0; font-family:monospace; font-size:12px;');
+    console.log('%c', 'padding:0;');
+    console.log('%cNice. You opened DevTools.', 'color:#8892a4; font-family:monospace; font-size:12px;');
+    console.log('%cCheck /robots.txt, /.well-known/security.txt, /humans.txt', 'color:#8892a4; font-family:monospace; font-size:12px;');
+    console.log('%cLooking for bugs? me@himanshuanand.com', 'color:#4ade80; font-family:monospace; font-size:12px;');
+  </script>
+
+  <!-- JSON-LD Person Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Himanshu Anand",
+    "url": "https://himanshuanand.com",
+    "jobTitle": "Security Researcher & Engineer",
+    "worksFor": { "@type": "Organization", "name": "Cloudflare" },
+    "sameAs": [
+      "https://github.com/unknownhad",
+      "https://twitter.com/anand_himanshu",
+      "https://infosec.exchange/@n00b/",
+      "https://ctftime.org/user/144614",
+      "https://blog.himanshuanand.com"
+    ],
+    "knowsAbout": ["Cybersecurity", "Malware Analysis", "Reverse Engineering", "WAF", "Threat Intelligence", "Client-Side Security"]
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# himanshuanand.com
+# If you're reading this, you're my kind of person.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /cdn-cgi/
+
+# Slow down aggressive crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Welcome, human. You passed the first test.
+# Now try: curl -s https://himanshuanand.com/.well-known/security.txt
+
+Sitemap: https://himanshuanand.com/sitemap.xml

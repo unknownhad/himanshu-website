@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security Policy — Himanshu Anand</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 60ch; margin: 4rem auto; padding: 1rem; line-height: 1.7; color: #e2e8f0; background: #0a0a0f; }
+    h1 { font-family: monospace; color: #4ade80; }
+    a { color: #4ade80; }
+    code { background: #1e2330; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>$ cat security-policy.md</h1>
+  <h2>Scope</h2>
+  <p>This policy applies to <code>himanshuanand.com</code> and its subdomains.</p>
+
+  <h2>Reporting</h2>
+  <p>If you discover a security vulnerability, please report it responsibly:</p>
+  <ul>
+    <li>Email: <a href="mailto:me@himanshuanand.com">me@himanshuanand.com</a></li>
+    <li>Twitter DM: <a href="https://twitter.com/anand_himanshu">@anand_himanshu</a></li>
+  </ul>
+
+  <h2>Guidelines</h2>
+  <ul>
+    <li>Do not access or modify other users' data</li>
+    <li>Do not perform actions that could harm the availability of the service</li>
+    <li>Provide sufficient detail to reproduce the issue</li>
+    <li>Allow reasonable time for a fix before public disclosure</li>
+  </ul>
+
+  <h2>Recognition</h2>
+  <p>I appreciate responsible disclosure and will credit researchers (unless they prefer anonymity).</p>
+
+  <h2>Out of Scope</h2>
+  <ul>
+    <li>Rate limiting or brute force on login forms</li>
+    <li>Missing security headers on non-sensitive pages</li>
+    <li>Social engineering attacks</li>
+    <li>Denial of service attacks</li>
+  </ul>
+
+  <p style="margin-top:2rem; color:#8892a4; font-family:monospace; font-size:13px;">
+    Last updated: 2026-05-04
+  </p>
+</body>
+</html>
