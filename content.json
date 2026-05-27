@@ -108,5 +108,77 @@
     { "name": "X / Twitter", "url": "https://twitter.com/anand_himanshu", "icon": "twitter" },
     { "name": "Mastodon", "url": "https://infosec.exchange/@n00b/", "icon": "mastodon" },
     { "name": "CTFtime", "url": "https://ctftime.org/user/144614", "icon": "flag" }
+  ],
+
+  "advisories": [
+    {
+      "cve": "CVE-2026-45064",
+      "severity": "Moderate",
+      "vendor": "Symfony",
+      "component": "HtmlSanitizer",
+      "title": "HtmlSanitizer URL Attributes Pass Through BiDi Override Characters \u2192 Visual href Spoofing",
+      "desc": "UrlSanitizer::parse() accepted URLs containing Unicode explicit-direction BiDi formatting characters (U+202A\u2013U+202E, U+2066\u2013U+2069) and passed them unchanged into href/src attributes. When rendered, the override characters reverse the visual ordering of the URL text \u2014 the displayed link can differ arbitrarily from the actual destination. Classic visual-spoofing / phishing primitive against viewers of sanitized content.",
+      "links": [
+        { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45064" },
+        { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-45064" },
+        { "label": "GHSA", "url": "https://github.com/symfony/symfony/security/advisories/GHSA-h5vq-qfcg-4m6p" },
+        { "label": "Symfony Advisory", "url": "https://symfony.com/blog/cve-2026-45064-htmlsanitizer-url-attributes-pass-through-bidi-override-characters-visual-href-spoofing" }
+      ]
+    },
+    {
+      "cve": "CVE-2026-45754",
+      "severity": "Moderate",
+      "vendor": "Symfony",
+      "component": "Mailjet Mailer & LOX24 Notifier",
+      "title": "Mailjet and LOX24 Webhook Parsers Never Verify the Configured Secret \u2192 Unauthenticated Webhook Event Injection",
+      "desc": "Both bridges' doParse() methods received the configured webhook secret but never read it; the payload was decoded and returned unconditionally. Any POST to the webhook endpoint was accepted even when a secret was configured, allowing forged bounce / spam / open / click / delivery events \u2014 suppression-list corruption, delivery-metrics fraud, etc.",
+      "links": [
+        { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45754" },
+        { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-45754" },
+        { "label": "GHSA", "url": "https://github.com/symfony/symfony/security/advisories/GHSA-64hg-93w9-fc35" },
+        { "label": "Symfony Advisory", "url": "https://symfony.com/blog/cve-2026-45754-mailjet-and-lox24-webhook-parsers-never-verify-the-configured-secret-unauthenticated-event-injection" }
+      ]
+    },
+    {
+      "cve": "CVE-2026-45755",
+      "severity": "Moderate",
+      "vendor": "Symfony",
+      "component": "Mailtrap Mailer",
+      "title": "Mailtrap Webhook Parser Never Verifies the X-Mt-Signature HMAC \u2192 Unauthenticated Webhook Event Injection",
+      "desc": "The Mailtrap mailer bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Mt-Signature HMAC header Mailtrap sends with every request. Any POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivery / bounce / open / click / spam events.",
+      "links": [
+        { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45755" },
+        { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-45755" },
+        { "label": "GHSA", "url": "https://github.com/symfony/symfony/security/advisories/GHSA-59f3-vp2f-mp9w" },
+        { "label": "Symfony Advisory", "url": "https://symfony.com/blog/cve-2026-45755-mailtrap-mailer-webhook-parser-never-verifies-the-x-mt-signature-hmac-unauthenticated-webhook-event-injection" }
+      ]
+    },
+    {
+      "cve": "CVE-2026-45756",
+      "severity": "Moderate",
+      "vendor": "Symfony",
+      "component": "JsonPath",
+      "title": "JsonPath Evaluates Attacker-Controlled Regular Expressions in match()/search() Without Limits \u2192 ReDoS",
+      "desc": "JsonPath's match() and search() filter functions compiled caller-supplied patterns directly into preg_match() with no length cap, no RFC 9485 i-regexp restriction, and no backtrack bound. A pathological pattern such as $[?search(@, \"(a+)+$\")] pinned a CPU core for seconds per request \u2014 a handful of concurrent requests exhausted the worker pool, yielding denial-of-service. Suppressed PCRE errors meant the attack left no log trace.",
+      "links": [
+        { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45756" },
+        { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-45756" },
+        { "label": "GHSA", "url": "https://github.com/symfony/symfony/security/advisories/GHSA-8v8v-g73j-492j" },
+        { "label": "Symfony Advisory", "url": "https://symfony.com/blog/cve-2026-45756-jsonpath-evaluates-attacker-controlled-regular-expressions-in-match-search-without-limits-redos" }
+      ]
+    },
+    {
+      "cve": "CVE-2026-47212",
+      "severity": "Moderate",
+      "vendor": "Symfony",
+      "component": "Twilio Notifier",
+      "title": "Twilio Webhook Parser Never Verifies the X-Twilio-Signature HMAC \u2192 Unauthenticated Webhook Event Injection",
+      "desc": "The Twilio SMS notifier bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Twilio-Signature HMAC header Twilio sends with every request. Any POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivered / failed / undelivered status events with downstream impact on metrics and automation triggers.",
+      "links": [
+        { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-47212" },
+        { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-47212" },
+        { "label": "Symfony Advisory", "url": "https://symfony.com/blog/cve-2026-47212-twilio-notifier-webhook-parser-never-verifies-the-x-twilio-signature-hmac-unauthenticated-webhook-event-injection" }
+      ]
+    }
   ]
 }
