@@ -34,9 +34,10 @@ Personal website running on Cloudflare Workers. Blog posts are fetched automatic
 | File | Purpose |
 |---|---|
 | `worker.js` | Main Worker — routing, HTML templating, security headers, static files (robots.txt, security.txt, etc.) |
-| `content.json` | All non-blog site content. Edit this to update talks, projects, patents, etc. |
+| `content.json` | All non-blog site content. Edit this to update talks, projects, patents, advisories, etc. |
 | `wrangler.toml` | Worker deployment config and KV namespace binding |
-| `update-content.sh` | Push content.json to KV in one command |
+| `update-content.sh` | Push content.json to KV in one command (local workflow) |
+| `.github/workflows/deploy-content.yml` | GitHub Action — auto-deploys content.json to KV on push (web workflow) |
 | `.gitignore` | Ignores node_modules, .wrangler, local preview files |
 
 ## Setup (one-time)
@@ -68,11 +69,24 @@ wrangler deploy
 
 Blog posts are fetched from `blog.himanshuanand.com/index.json` at request time and cached for 1 hour. Publish a new Hugo post and the main site picks it up automatically.
 
-### Talks, projects, patents, papers, media, etc.
+### Talks, projects, patents, papers, media, advisories, etc.
+
+Pick whichever workflow is faster for you:
+
+**Local workflow** (edit in any editor, push via terminal):
 
 1. Edit `content.json`
 2. Run `./update-content.sh`
 3. Site updates within 60 seconds
+
+**Web workflow** (edit on github.com from any device, auto-deploy):
+
+1. Open https://github.com/unknownhad/himanshu-website/edit/main/content.json
+2. Edit and click **Commit changes**
+3. GitHub Actions pushes to KV automatically (~30 sec)
+4. Site updates within 60 seconds
+
+The web workflow requires a one-time setup: see [GitHub Actions setup](#github-actions-setup-one-time) below.
 
 ### Examples
 
@@ -110,6 +124,29 @@ Blog posts are fetched from `blog.himanshuanand.com/index.json` at request time 
   "number": "US XX,XXX,XXX"
 }
 ```
+
+**Add a new CVE / advisory:**
+
+```json
+// In content.json → "advisories" array, add (at the top of the array
+// to keep newest first):
+{
+  "cve": "CVE-2026-XXXXX",
+  "severity": "Moderate",
+  "vendor": "Vendor Name",
+  "component": "Affected Component",
+  "title": "One-line bug title",
+  "desc": "1-2 sentence description of the root cause and impact.",
+  "links": [
+    { "label": "NVD",              "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-XXXXX" },
+    { "label": "MITRE",            "url": "https://www.cve.org/CVERecord?id=CVE-2026-XXXXX" },
+    { "label": "GHSA",             "url": "https://github.com/<org>/<repo>/security/advisories/GHSA-..." },
+    { "label": "Vendor Advisory",  "url": "https://example.com/advisory" }
+  ]
+}
+```
+
+`severity` must be one of `critical`, `high`, `moderate`, `low`, `info` (case-insensitive — it's lowercased for CSS class).
 
 **Add a media mention:**
 
@@ -164,7 +201,8 @@ content.json
 ├── patents[]       # Patents (title, url, number)
 ├── papers[]        # Papers (title, url, publisher)
 ├── projects[]      # Side projects (title, url, desc, tags)
-└── social[]        # Social links (name, url, icon)
+├── social[]        # Social links (name, url, icon)
+└── advisories[]    # Reported CVEs (cve, severity, vendor, component, title, desc, links[])
 ```
 
 ## Routing
@@ -172,6 +210,7 @@ content.json
 | Path | Response |
 |---|---|
 | `/` | Dynamic HTML (rendered from KV + blog API) |
+| `/advisories` | Dynamic HTML — reported CVEs from KV |
 | `/robots.txt` | Blocks AI crawlers, links to sitemap |
 | `/.well-known/security.txt` | RFC 9116 security contact info |
 | `/security-policy` | Responsible disclosure policy page |
@@ -226,3 +265,45 @@ open http://localhost:8080
 ```
 
 This shows the design and layout. Dynamic content (KV + blog API) only works when deployed to Workers.
+
+## GitHub Actions setup (one-time)
+
+`/.github/workflows/deploy-content.yml` watches `content.json` and pushes it to `SITE_KV` on every commit to `main`. After the one-time setup below, editing content.json on github.com triggers an automatic deploy to KV — no terminal required.
+
+### 1. Create a scoped Cloudflare API token
+
+1. Go to https://dash.cloudflare.com/profile/api-tokens
+2. Click **Create Token** → **Create Custom Token**
+3. Token name: `github-actions-himanshu-website`
+4. Permissions:
+   - `Account` → `Workers KV Storage` → `Edit`
+5. Account Resources: `Include` → your account
+6. Click **Continue to summary** → **Create Token**
+7. Copy the token (you only see it once).
+
+### 2. Add the token to GitHub
+
+1. Go to https://github.com/unknownhad/himanshu-website/settings/secrets/actions
+2. Click **New repository secret**
+3. Name: `CLOUDFLARE_API_TOKEN`
+4. Value: paste the token from step 1
+5. Click **Add secret**
+
+### 3. Trigger the first run
+
+After committing this workflow file, every future change to `content.json` (or a manual run from the **Actions** tab) will:
+
+1. Validate that `content.json` parses as JSON
+2. Show a summary of how many entries are in each section
+3. Run `wrangler kv key put` against `SITE_KV` (id `663719dc881d4183b2c87ff3f185d2fd`)
+4. Site updates within 60 seconds
+
+If the API token is missing or wrong, the run fails with a clear error and KV is untouched.
+
+### Quick edit shortcut
+
+Bookmark this URL — it opens the file directly in GitHub's web editor:
+
+```
+https://github.com/unknownhad/himanshu-website/edit/main/content.json
+```
