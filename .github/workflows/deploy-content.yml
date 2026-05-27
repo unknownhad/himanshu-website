@@ -1,0 +1,95 @@
+name: Deploy content to Cloudflare KV
+
+# Runs whenever content.json is changed on the main branch.
+# Reads content.json from the repo and pushes it to the SITE_KV namespace,
+# which the himanshu-home Worker reads at request time.
+#
+# Required GitHub repository secrets:
+#   CLOUDFLARE_API_TOKEN   API token with "Workers KV Storage: Edit"
+#                          permission for the SITE_KV namespace.
+#                          Create at: https://dash.cloudflare.com/profile/api-tokens
+#
+# Hardcoded (not secret):
+#   CLOUDFLARE_ACCOUNT_ID  a2e852dc85195777ddc7eb6aed0e4eeb
+#   KV_NAMESPACE_ID        663719dc881d4183b2c87ff3f185d2fd   (SITE_KV)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content.json"
+      - ".github/workflows/deploy-content.yml"
+  workflow_dispatch:           # allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-content
+  cancel-in-progress: false    # never cancel a KV write mid-flight
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: a2e852dc85195777ddc7eb6aed0e4eeb
+  KV_NAMESPACE_ID:       663719dc881d4183b2c87ff3f185d2fd
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate content.json is valid JSON
+        run: |
+          if ! python3 -c "import json; json.load(open('content.json'))" 2>err.log; then
+            echo "::error file=content.json::content.json is not valid JSON"
+            cat err.log
+            exit 1
+          fi
+          echo "content.json parses cleanly"
+
+      - name: Show what we are about to publish
+        run: |
+          python3 - <<'PY'
+          import json
+          c = json.load(open('content.json'))
+          print(f"  advisories:      {len(c.get('advisories', []))}")
+          print(f"  employer_posts:  {len(c.get('employer_posts', []))}")
+          print(f"  talks:           {len(c.get('talks', []))}")
+          print(f"  media:           {len(c.get('media', []))}")
+          print(f"  patents:         {len(c.get('patents', []))}")
+          print(f"  papers:          {len(c.get('papers', []))}")
+          print(f"  projects:        {len(c.get('projects', []))}")
+          PY
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Push content.json to SITE_KV
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN secret is not set. Add it in repo Settings → Secrets → Actions."
+            exit 1
+          fi
+          npx --yes wrangler@latest kv key put \
+            --namespace-id "$KV_NAMESPACE_ID" \
+            --remote \
+            SITE_CONTENT \
+            --path content.json
+
+      - name: Summary
+        run: |
+          {
+            echo "### content.json deployed to SITE_KV"
+            echo ""
+            echo "- Account: \`$CLOUDFLARE_ACCOUNT_ID\`"
+            echo "- KV namespace: \`$KV_NAMESPACE_ID\`"
+            echo "- Worker cache TTL: 60s — changes should be live shortly"
+            echo "- Verify: https://himanshuanand.com/advisories"
+          } >> "$GITHUB_STEP_SUMMARY"
