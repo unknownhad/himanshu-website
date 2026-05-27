@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Validate content.json is valid JSON
         run: |
@@ -65,11 +65,11 @@ jobs:
           PY
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "22"
 
-      - name: Push content.json to SITE_KV
+      - name: Verify Cloudflare API token works
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
@@ -77,6 +77,26 @@ jobs:
             echo "::error::CLOUDFLARE_API_TOKEN secret is not set. Add it in repo Settings → Secrets → Actions."
             exit 1
           fi
+          echo "Token length: ${#CLOUDFLARE_API_TOKEN} chars"
+          # Hit Cloudflare's token-verify endpoint directly. No wrangler involvement —
+          # so any auth error is obviously the token's fault, not wrangler's.
+          status=$(curl -sS -o resp.json -w "%{http_code}" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            https://api.cloudflare.com/client/v4/user/tokens/verify)
+          echo "HTTP $status"
+          cat resp.json
+          echo
+          if [ "$status" != "200" ]; then
+            echo "::error::Cloudflare rejected the token. Most common cause: token missing 'Workers KV Storage: Edit' permission on this account. Recreate at https://dash.cloudflare.com/profile/api-tokens"
+            exit 1
+          fi
+
+      - name: Push content.json to SITE_KV
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -x
           npx --yes wrangler@latest kv key put \
             --namespace-id "$KV_NAMESPACE_ID" \
             --remote \
