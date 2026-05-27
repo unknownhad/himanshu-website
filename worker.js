@@ -90,6 +90,7 @@ Policy: https://himanshuanand.com/security-policy
   '/sitemap.xml': { type: 'application/xml; charset=utf-8', cache: 86400, body: `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://himanshuanand.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://himanshuanand.com/advisories</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://blog.himanshuanand.com/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://promptinjection.himanshuanand.com/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://cloudintel.info/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
@@ -242,6 +243,7 @@ footer{text-align:center;padding:2rem 1rem;font-family:var(--font-mono);font-siz
     <span class="nav-brand">~/himanshu</span>
     <a class="nav-link" href="#about">About</a>
     <a class="nav-link" href="#research">Research</a>
+    <a class="nav-link" href="/advisories">Advisories</a>
     <a class="nav-link" href="#talks">Talks</a>
     <a class="nav-link" href="#projects">Projects</a>
     <a class="nav-link" href="#patents">Patents</a>
@@ -398,6 +400,121 @@ footer{text-align:center;padding:2rem 1rem;font-family:var(--font-mono);font-siz
 </html>`;
 }
 
+// ─── Advisories Page ────────────────────────────────────────────
+function renderAdvisoryCard(adv) {
+  const sevClass = String(adv.severity || 'info').toLowerCase();
+  const links = (adv.links || []).map(l =>
+    `<a class="adv-chip" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`
+  ).join('');
+  const primary = adv.links && adv.links[0] ? adv.links[0].url : '#';
+  return `<div class="card adv-card">
+    <div class="adv-head">
+      <span class="adv-id"><a href="${esc(primary)}" target="_blank" rel="noopener noreferrer">${esc(adv.cve)}</a></span>
+      <span class="adv-sev adv-sev--${esc(sevClass)}">${esc(adv.severity)}</span>
+      <span class="adv-vendor">${esc(adv.vendor)} &middot; ${esc(adv.component)}</span>
+    </div>
+    <p class="adv-title">${esc(adv.title)}</p>
+    <p class="card-desc">${esc(adv.desc)}</p>
+    <div class="adv-links">${links}</div>
+  </div>`;
+}
+
+function renderAdvisoriesPage(content) {
+  const list = Array.isArray(content && content.advisories) ? content.advisories : [];
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Security advisories and CVEs reported by Himanshu Anand \u2014 vendor advisories, CVE entries, and write-ups.">
+  <meta name="author" content="Himanshu Anand">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://himanshuanand.com/advisories">
+  <meta property="og:title" content="Advisories \u2014 Himanshu Anand">
+  <meta property="og:description" content="Security advisories and CVEs reported by Himanshu Anand.">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Advisories \u2014 Himanshu Anand</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4ade80">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root{--bg:#0a0a0f;--bg-alt:#0f1117;--card:#13151c;--card-hover:#181b24;--text:#e2e8f0;--text-muted:#8892a4;--accent:#4ade80;--accent-dim:rgba(74,222,128,0.12);--accent-ring:rgba(74,222,128,0.3);--border:#1e2330;--link:#4ade80;--link-hover:#86efac;--radius:12px;--radius-sm:8px;--shadow:0 4px 16px rgba(0,0,0,0.3);--font-body:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-mono:'JetBrains Mono','Fira Code','Consolas',monospace;--container:68ch;--nav-h:56px}
+@media(prefers-color-scheme:light){:root{--bg:#f8f9fb;--bg-alt:#f1f3f7;--card:#fff;--card-hover:#f5f7fa;--text:#1a1d26;--text-muted:#5a6377;--accent:#16a34a;--accent-dim:rgba(22,163,74,0.08);--accent-ring:rgba(22,163,74,0.25);--border:#e2e5ec;--link:#16a34a;--link-hover:#15803d;--shadow:0 4px 16px rgba(0,0,0,0.06)}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 1rem)}body{font-family:var(--font-body);font-size:16px;line-height:1.7;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}img{max-width:100%;display:block}a{color:var(--link);text-decoration:none;transition:color .15s}a:hover{color:var(--link-hover)}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:var(--nav-h);display:flex;align-items:center;justify-content:center}@media(prefers-color-scheme:light){nav{background:rgba(248,249,251,0.88)}}.nav-inner{display:flex;align-items:center;gap:.25rem;max-width:var(--container);width:100%;padding:0 1rem;overflow-x:auto;scrollbar-width:none}.nav-inner::-webkit-scrollbar{display:none}.nav-brand{font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--accent);margin-right:auto;white-space:nowrap;flex-shrink:0}.nav-link{font-size:13px;font-weight:500;color:var(--text-muted);padding:6px 10px;border-radius:6px;white-space:nowrap;transition:color .15s,background .15s}.nav-link:hover{color:var(--accent);background:var(--accent-dim)}.nav-link.active{color:var(--accent);background:var(--accent-dim)}
+.adv-hero{padding:3rem 1rem 2.5rem;text-align:center;border-bottom:1px solid var(--border);background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(74,222,128,0.06),transparent),var(--bg)}.adv-hero .crumb{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin-bottom:.75rem}.adv-hero .crumb a{color:var(--text-muted)}.adv-hero .crumb a:hover{color:var(--accent)}.adv-hero h1{font-family:var(--font-mono);font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.5px;margin-bottom:.5rem}.adv-hero p{color:var(--text-muted);max-width:60ch;margin:0 auto}
+.container{max-width:var(--container);width:100%;margin:0 auto;padding:0 1rem}.section{padding:3rem 0;border-bottom:1px solid var(--border)}.section:last-child{border-bottom:0}.section-header{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin-bottom:.35rem}.section-header .prompt{color:var(--accent)}.section h2{font-size:clamp(20px,2.5vw,26px);font-weight:800;margin-bottom:1.25rem;color:var(--text)}
+.card-grid{display:grid;grid-template-columns:1fr;gap:.75rem}.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem;transition:border-color .15s,background .15s}.card:hover{border-color:rgba(74,222,128,0.25);background:var(--card-hover)}.card-desc{font-size:14px;color:var(--text-muted);line-height:1.6;margin-top:.4rem}
+.adv-card{padding:1.25rem 1.35rem}.adv-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .75rem;margin-bottom:.25rem}.adv-id{font-family:var(--font-mono);font-weight:700;font-size:15px;letter-spacing:.2px}.adv-id a{color:var(--text)}.adv-id a:hover{color:var(--accent)}.adv-vendor{font-size:13px;color:var(--text-muted);font-weight:500}
+.adv-sev{display:inline-block;font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:2px 8px;border-radius:999px;vertical-align:middle;border:1px solid transparent}
+.adv-sev--critical{background:rgba(220,38,38,0.12);color:#fca5a5;border-color:rgba(220,38,38,0.25)}
+.adv-sev--high{background:rgba(234,88,12,0.12);color:#fdba74;border-color:rgba(234,88,12,0.25)}
+.adv-sev--moderate,.adv-sev--medium{background:rgba(234,179,8,0.12);color:#fde047;border-color:rgba(234,179,8,0.25)}
+.adv-sev--low{background:rgba(59,130,246,0.12);color:#93c5fd;border-color:rgba(59,130,246,0.25)}
+.adv-sev--info{background:var(--accent-dim);color:var(--accent);border-color:rgba(74,222,128,0.2)}
+@media(prefers-color-scheme:light){.adv-sev--critical{color:#991b1b;background:#fee2e2}.adv-sev--high{color:#9a3412;background:#ffedd5}.adv-sev--moderate,.adv-sev--medium{color:#854d0e;background:#fef3c7}.adv-sev--low{color:#1e3a8a;background:#dbeafe}.adv-sev--info{color:#15803d}}
+.adv-title{font-size:15px;font-weight:600;color:var(--text);margin-top:.45rem;line-height:1.5}
+.adv-links{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem}
+.adv-chip{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;border:1px solid var(--border);background:var(--bg-alt);color:var(--text);transition:all .12s;text-decoration:none}.adv-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:translateY(-1px);text-decoration:none}
+.policy-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.15rem 1.35rem;font-size:14px;color:var(--text-muted);line-height:1.7}.policy-card strong{color:var(--text)}
+footer{text-align:center;padding:2rem 1rem;font-family:var(--font-mono);font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+.btt{position:fixed;bottom:1.25rem;right:1.25rem;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#0a0a0f;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .2s,transform .2s;z-index:90}.btt.visible{opacity:1;transform:translateY(0)}.btt svg{width:18px;height:18px}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}.fade-in.visible{opacity:1;transform:translateY(0)}@media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none}}
+@media(max-width:480px){.adv-hero{padding:2rem 1rem 1.5rem}.section{padding:2rem 0}.nav-link{font-size:12px;padding:4px 8px}.adv-card{padding:1rem 1.05rem}}
+  </style>
+</head>
+<body>
+  <nav><div class="nav-inner">
+    <span class="nav-brand">~/himanshu</span>
+    <a class="nav-link" href="/#about">About</a>
+    <a class="nav-link" href="/#research">Research</a>
+    <a class="nav-link active" href="/advisories">Advisories</a>
+    <a class="nav-link" href="/#talks">Talks</a>
+    <a class="nav-link" href="/#projects">Projects</a>
+    <a class="nav-link" href="/#patents">Patents</a>
+    <a class="nav-link" href="/#contact">Contact</a>
+  </div></nav>
+
+  <header class="adv-hero">
+    <p class="crumb"><span style="color:var(--accent)">$</span> cd ~/<a href="/">himanshu</a>/advisories</p>
+    <h1>Advisories</h1>
+    <p>CVEs I have reported, with links to the official vendor advisories, CVE entries, and write-ups where available.</p>
+  </header>
+
+  <main class="container">
+    <section class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> ls ~/advisories/</div>
+      <h2>Reported CVEs</h2>
+      <div class="card-grid">
+        ${list.map(renderAdvisoryCard).join('')}
+      </div>
+    </section>
+
+    <section class="section fade-in">
+      <div class="section-header"><span class="prompt">$</span> cat ~/disclosure-policy.md</div>
+      <h2>Disclosure Policy</h2>
+      <div class="policy-card">
+        I follow coordinated disclosure. Advisories are published here only after the vendor has shipped
+        a fix and the CVE is publicly indexed. For sensitive reports, reach me at
+        <strong>me[at]himanshuanand.com</strong>.
+      </div>
+    </section>
+  </main>
+
+  <footer><p>&copy; ${new Date().getFullYear()} Himanshu Anand &middot; Built with Cloudflare Workers</p></footer>
+  <button class="btt" aria-label="Back to top" onclick="window.scrollTo({top:0})">${ICONS.up}</button>
+
+  <script>
+    const btt=document.querySelector('.btt');window.addEventListener('scroll',()=>{btt.classList.toggle('visible',window.scrollY>200)},{passive:true});
+    if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');o.unobserve(x.target)}})},{threshold:.1});document.querySelectorAll('.fade-in').forEach(el=>o.observe(el))}else{document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('visible'))}
+  </script>
+</body>
+</html>`;
+}
+
 // ─── 404 Page ───────────────────────────────────────────────────
 const NOT_FOUND = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>404</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><style>body{font-family:monospace;max-width:50ch;margin:6rem auto;padding:1rem;color:#e2e8f0;background:#0a0a0f;text-align:center}.code{font-size:64px;font-weight:bold;color:#4ade80}a{color:#4ade80}.p{margin-top:2rem;color:#8892a4;font-size:14px}</style></head><body><div class="code">404</div><p>$ ls: no such file or directory</p><p class="p"><a href="/">cd ~/himanshu</a> &middot; <a href="https://blog.himanshuanand.com">cd ~/blog</a></p></body></html>`;
 
@@ -420,6 +537,16 @@ export default {
 
     // Security policy
     if (path === '/security-policy') return respond(SECURITY_POLICY_HTML, 'text/html; charset=utf-8', 200, 86400);
+
+    // Advisories page — dynamic render
+    if (path === '/advisories') {
+      const content = await fetchContent(env);
+      if (!content) {
+        return respond('<h1>Site loading... push content.json to KV first.</h1>', 'text/html; charset=utf-8', 503);
+      }
+      const html = renderAdvisoriesPage(content);
+      return respond(html, 'text/html; charset=utf-8', 200, HTML_CACHE_TTL);
+    }
 
     // Home page — dynamic render
     if (path === '/') {
