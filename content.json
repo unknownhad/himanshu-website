@@ -179,6 +179,45 @@
         { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-47212" },
         { "label": "Symfony Advisory", "url": "https://symfony.com/blog/cve-2026-47212-twilio-notifier-webhook-parser-never-verifies-the-x-twilio-signature-hmac-unauthenticated-webhook-event-injection" }
       ]
+    },
+    {
+      "cve": "GHSA-fw87-fv5r-9fpw",
+      "severity": "Moderate",
+      "vendor": "Hugo",
+      "component": "resources.Get / RootMappingFs",
+      "title": "Symlink Confinement Bypass in resources.Get \u2192 Arbitrary File Read",
+      "desc": "A regression introduced in v0.123.0 caused RootMappingFs.statRoot to call Stat (which follows symlinks) instead of Lstat, so a direct resources.Get \"somefile\" where somefile was a symlink pointing outside the mount would return the target's contents. A symlink planted inside a theme or local mount (e.g. a locally-vendored theme under themes/) could therefore read arbitrary files reachable to the user running hugo. Themes mounted as Go modules from GitHub have symlinks stripped and are not affected. Fixed in v0.162.0, which calls LstatIfPossible and rejects symlinked entries.",
+      "links": [
+        { "label": "GHSA", "url": "https://github.com/gohugoio/hugo/security/advisories/GHSA-fw87-fv5r-9fpw" },
+        { "label": "Fix Commit", "url": "https://github.com/gohugoio/hugo/commit/f8b5fa09a6" }
+      ]
+    },
+    {
+      "cve": "GHSA-vxgm-5rmg-5w8g",
+      "severity": "Moderate",
+      "vendor": "Hugo",
+      "component": "resources.GetRemote",
+      "title": "security.http.urls Allow-List Bypass via HTTP Redirects \u2192 SSRF",
+      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects. An allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid \u2014 for example http://localhost/ or an internal IP \u2014 and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1. Fixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
+      "links": [
+        { "label": "GHSA", "url": "https://github.com/gohugoio/hugo/security/advisories/GHSA-vxgm-5rmg-5w8g" },
+        { "label": "Fix Commit", "url": "https://github.com/gohugoio/hugo/commit/86fbb0f7a8" }
+      ]
+    },
+    {
+      "cve": "CVE-2026-45734",
+      "severity": "Low",
+      "vendor": "MyBB",
+      "component": "Default CAPTCHA (class_captcha.php)",
+      "title": "Default CAPTCHA Missing Invalidation \u2192 Challenge Replay / CAPTCHA Bypass",
+      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics. Several endpoints \u2014 Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php), and Send to Friend (sendthread.php) \u2014 never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired. CWE-837 (Improper Enforcement of a Single, Unique Action). Fixed in MyBB 1.8.40.",
+      "links": [
+        { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45734" },
+        { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-45734" },
+        { "label": "GHSA", "url": "https://github.com/mybb/mybb/security/advisories/GHSA-jrrr-f3jw-mjmc" },
+        { "label": "Release Notes", "url": "https://mybb.com/versions/1.8.40/" },
+        { "label": "Fix Commit", "url": "https://github.com/mybb/mybb/commit/c2ed54f9259b9ce05728a9e657169033fe4adffc" }
+      ]
     }
   ]
 }
