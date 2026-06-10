@@ -222,6 +222,44 @@
         { "label": "Release Notes", "url": "https://mybb.com/versions/1.8.40/" },
         { "label": "Fix Commit", "url": "https://github.com/mybb/mybb/commit/c2ed54f9259b9ce05728a9e657169033fe4adffc" }
       ]
-    }
+    },
+    {
+  "cve": "CVE-2026-53667",
+  "severity": "TODO",
+  "vendor": "React Router (Remix)",
+  "component": "TODO",
+  "title": "TODO",
+  "desc": "TODO \u2014 embargoed until react-router publishes the fix.",
+  "links": [
+    { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-53667" },
+    { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-53667" },
+    { "label": "GHSA", "url": "https://github.com/remix-run/react-router/security/advisories/GHSA-h8fp-f39c-q6mh" }
+  ]
+},
+{
+  "cve": "CVE-2026-48612",
+  "severity": "TODO",
+  "vendor": "React Router (Remix)",
+  "component": "TODO",
+  "title": "TODO",
+  "desc": "TODO \u2014 embargoed until react-router publishes the fix.",
+  "links": [
+    { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-48612" },
+    { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-48612" },
+    { "label": "GHSA", "url": "https://github.com/remix-run/react-router/security/advisories/GHSA-f53m-v6g7-hfxg" }
+  ]
+},
+{
+  "cve": "CVE-2026-53664",
+  "severity": "TODO",
+  "vendor": "React Router (Remix)",
+  "component": "TODO",
+  "title": "TODO",
+  "desc": "TODO \u2014 embargoed until react-router publishes the fix.",
+  "links": [
+    { "label": "NVD", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-53664" },
+    { "label": "MITRE", "url": "https://www.cve.org/CVERecord?id=CVE-2026-53664" }
+  ]
+}
   ]
 }
