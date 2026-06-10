@@ -672,7 +672,7 @@
     {
       "cve": "CVE-2026-48612",
       "severity": "TODO",
-      "vendor": "React Router (Remix)",
+      "vendor": "phpBB",
       "component": "TODO",
       "title": "TODO",
       "desc": "TODO — embargoed until react-router publishes the fix.",
@@ -688,6 +688,10 @@
         {
           "label": "GHSA",
           "url": "https://github.com/remix-run/react-router/security/advisories/GHSA-f53m-v6g7-hfxg"
+        },
+        {
+          "label": "Release Notes",
+          "url": "https://www.phpbb.com/community/viewtopic.php?t=2672170"
         }
       ]
     },
