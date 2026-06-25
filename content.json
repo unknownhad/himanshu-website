@@ -669,13 +669,13 @@
         }
       ]
     },
-    {
+ {
       "cve": "CVE-2026-48612",
-      "severity": "TODO",
+      "severity": "High",
       "vendor": "phpBB",
-      "component": "TODO",
-      "title": "TODO",
-      "desc": "TODO — embargoed until react-router publishes the fix.",
+      "component": "OAuth Implementation",
+      "title": "Improper State Verification in OAuth → Account Takeover",
+      "desc": "Improper state verification in the OAuth implementation allowed an attacker to manipulate the authentication flow and link a victim's account to an attacker-controlled account. One variant could be exploited even when OAuth was not configured or enabled, resulting in unauthorized account linking and potential account takeover. Affected phpBB 3.3.0 through 3.3.16. Fixed in phpBB 3.3.17.",
       "links": [
         {
           "label": "NVD",
@@ -684,10 +684,6 @@
         {
           "label": "MITRE",
           "url": "https://www.cve.org/CVERecord?id=CVE-2026-48612"
-        },
-        {
-          "label": "GHSA",
-          "url": "https://github.com/remix-run/react-router/security/advisories/GHSA-f53m-v6g7-hfxg"
         },
         {
           "label": "Release Notes",
