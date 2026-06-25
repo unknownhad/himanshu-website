@@ -695,7 +695,7 @@
         }
       ]
     },
-        {
+    {
       "cve": "CVE-2026-55807",
       "severity": "Moderately Critical",
       "vendor": "Drupal",
@@ -732,6 +732,24 @@
         {
           "label": "MITRE",
           "url": "https://www.cve.org/CVERecord?id=CVE-2026-53664"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-57231",
+      "severity": "High",
+      "vendor": "Podman",
+      "component": "Image environment variable parsing",
+      "title": "Malformed Image can trick podman run into leaking host environment variables into the container",
+      "desc": "An container image that contains a environment variable with just a key and no value can trick podman into passing that variable from the host into the container. This is made worse by the fact that using an asterisk (*) will cause podman to pass all host variables into the container. So essentially a malicious image can exfiltrate all podman environment variables that are set in the session from where the container is launched. Affected versions >= v1.8.1, <= v5.8.3. Fixed in v5.8.4 and v6.0.0.",
+      "links": [
+        {
+          "label": "GHSA",
+          "url": "https://github.com/podman-container-tools/podman/security/advisories/GHSA-4hq8-gpf5-8p68"
+        },
+        {
+          "label": "Fix Commit",
+          "url": "https://github.com/podman-container-tools/podman/commit/6c431b73dbf8e4b20b778644d7a80caebdb75050"
         }
       ]
     }
