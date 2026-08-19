@@ -7,7 +7,7 @@
     "ctf_url": "https://ctftime.org/user/144614"
   },
   "about": {
-    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams. I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1–3), built IPS/IDS signatures, and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023–2025).</p>",
+    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams.\nI specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1–3), built IPS/IDS signatures, and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>.\nI compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023–2025).</p>",
     "skills": [
       "Malware Analysis",
       "Reverse Engineering",
@@ -440,6 +440,58 @@
   ],
   "advisories": [
     {
+      "cve": "CVE-2026-70652",
+      "severity": "Low",
+      "vendor": "libvips",
+      "component": "JPEG gain-map encoding / libultrahdr",
+      "title": "Incorrect JPEG Gain-Map Output Buffer Sizing → Heap Buffer Over-Read",
+      "desc": "When compiled with libultrahdr support, libvips could incorrectly size the output buffer while encoding a JPEG with a gain map, causing a possible heap-based buffer over-read. Exploitation requires a pipeline that expands an incoming JPEG to a very large output before encoding. Affected versions <8.18.3; fixed in 8.18.3.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-70652"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-70652"
+        },
+        {
+          "label": "GHSA",
+          "url": "https://github.com/libvips/libvips/security/advisories/GHSA-h27h-jf9v-m8rg"
+        },
+        {
+          "label": "Fix Commit",
+          "url": "https://github.com/libvips/libvips/commit/cff17794f0698a4f47c74bb31c9700b2c83252a8"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-70653",
+      "severity": "Moderate",
+      "vendor": "libvips",
+      "component": "Radiance RLE image decoder",
+      "title": "Crafted RLE Radiance Image Decoding → Four-Byte Heap Buffer Over-Read",
+      "desc": "When compiled with Radiance image-loading support, libvips could read and disclose four bytes beyond a heap buffer while decoding a specially crafted run-length encoded Radiance image, most likely exposing bytes from other image data. Affected versions <8.18.3; fixed in 8.18.3.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-70653"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-70653"
+        },
+        {
+          "label": "GHSA",
+          "url": "https://github.com/libvips/libvips/security/advisories/GHSA-fh99-55jf-5hj3"
+        },
+        {
+          "label": "Fix Commit",
+          "url": "https://github.com/libvips/libvips/commit/dc945573e15d598054e701c65b90a35b16b19304"
+        }
+      ]
+    },
+    {
       "cve": "CVE-2026-45064",
       "severity": "Moderate",
       "vendor": "Symfony",
@@ -462,6 +514,32 @@
         {
           "label": "Symfony Advisory",
           "url": "https://symfony.com/blog/cve-2026-45064-htmlsanitizer-url-attributes-pass-through-bidi-override-characters-visual-href-spoofing"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-45753",
+      "severity": "Low",
+      "vendor": "Symfony",
+      "component": "HtmlSanitizer / UrlAttributeSanitizer",
+      "title": "UrlAttributeSanitizer Omits action/formaction/poster/cite → javascript: URI Survives Sanitization (XSS)",
+      "desc": "UrlAttributeSanitizer did not treat action, formaction, poster, and cite as URL-valued attributes, so dangerous schemes in those attributes were not validated. In deliberately permissive sanitizer configurations, a javascript: URI could therefore survive sanitization; action and formaction exploitation additionally requires the victim to submit a form or click a button. Affected Symfony >=6.1,<6.4.40; >=7,<7.4.12; and >=8,<8.0.12; fixed in 6.4.40, 7.4.12, and 8.0.12.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45753"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-45753"
+        },
+        {
+          "label": "GHSA",
+          "url": "https://github.com/symfony/symfony/security/advisories/GHSA-hhg7-c65m-h7ff"
+        },
+        {
+          "label": "Symfony Advisory",
+          "url": "https://symfony.com/blog/cve-2026-45753-htmlsanitizer-urlattributesanitizer-omits-action-formaction-poster-cite-javascript-uri-survives-sanitization-xss"
         }
       ]
     },
@@ -571,7 +649,7 @@
       "vendor": "Hugo",
       "component": "resources.Get / RootMappingFs",
       "title": "Symlink Confinement Bypass in resources.Get → Arbitrary File Read",
-      "desc": "A regression introduced in v0.123.0 caused RootMappingFs.statRoot to call Stat (which follows symlinks) instead of Lstat, so a direct resources.Get \"somefile\" where somefile was a symlink pointing outside the mount would return the target's contents. A symlink planted inside a theme or local mount (e.g. a locally-vendored theme under themes/) could therefore read arbitrary files reachable to the user running hugo. Themes mounted as Go modules from GitHub have symlinks stripped and are not affected. Fixed in v0.162.0, which calls LstatIfPossible and rejects symlinked entries.",
+      "desc": "A regression introduced in v0.123.0 caused RootMappingFs.statRoot to call Stat (which follows symlinks) instead of Lstat, so a direct resources.Get \"somefile\" where somefile was a symlink pointing outside the mount would return the target's contents. A symlink planted inside a theme or local mount (e.g. a locally-vendored theme under themes/) could therefore read arbitrary files reachable to the user running hugo.\nThemes mounted as Go modules from GitHub have symlinks stripped and are not affected. Fixed in v0.162.0, which calls LstatIfPossible and rejects symlinked entries.",
       "links": [
         {
           "label": "NVD",
@@ -597,7 +675,7 @@
       "vendor": "Hugo",
       "component": "resources.GetRemote",
       "title": "security.http.urls Allow-List Bypass via HTTP Redirects → SSRF",
-      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects. An allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid — for example http://localhost/ or an internal IP — and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1. Fixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
+      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects. An allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid — for example http://localhost/ or an internal IP — and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1.\nFixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
       "links": [
         {
           "label": "NVD",
@@ -623,7 +701,7 @@
       "vendor": "MyBB",
       "component": "Default CAPTCHA (class_captcha.php)",
       "title": "Default CAPTCHA Missing Invalidation → Challenge Replay / CAPTCHA Bypass",
-      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics. Several endpoints — Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php), and Send to Friend (sendthread.php) — never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired. CWE-837 (Improper Enforcement of a Single, Unique Action). Fixed in MyBB 1.8.40.",
+      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics. Several endpoints — Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php), and Send to Friend (sendthread.php) — never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired.\nCWE-837 (Improper Enforcement of a Single, Unique Action). Fixed in MyBB 1.8.40.",
       "links": [
         {
           "label": "NVD",
@@ -648,12 +726,34 @@
       ]
     },
     {
+      "cve": "No CVE (MyBB 1.8.40)",
+      "severity": "Info",
+      "vendor": "MyBB",
+      "component": "Contact page redirect handling (contact.php)",
+      "title": "Unvalidated Contact Page Redirect Target → Open Redirect",
+      "desc": "The Contact module accepted a redirect target from the from request parameter or HTTP Referer header and passed it to redirect() without sufficient verification, enabling attacker-controlled redirects after contact-form actions. MyBB credits Himanshu Anand for reporting the open-redirect weakness; the redirect handling was corrected in MyBB 1.8.40.",
+      "links": [
+        {
+          "label": "Release Notes",
+          "url": "https://mybb.com/versions/1.8.40/"
+        },
+        {
+          "label": "Release Announcement",
+          "url": "https://blog.mybb.com/2026/05/28/mybb-1-8-40-released-security-maintenance-release/"
+        },
+        {
+          "label": "Related Fix",
+          "url": "https://github.com/mybb/mybb/commit/04aa5da6ecd41c0e84456a733df8b28974f4e9db"
+        }
+      ]
+    },
+    {
       "cve": "CVE-2026-53667",
-      "severity": "TODO",
+      "severity": "Moderate",
       "vendor": "React Router (Remix)",
-      "component": "TODO",
-      "title": "TODO",
-      "desc": "TODO — embargoed until react-router publishes the fix.",
+      "component": "Unstable RSC APIs / RSCErrorHandler",
+      "title": "RSCErrorHandler Missing Protocol Validation → Redirect-Based XSS",
+      "desc": "In React Router 7.11.0 through 7.17.x, the unstable RSC error-handling path did not validate the protocol of redirect targets from untrusted sources, allowing an attacker-supplied redirect target to create an XSS vector. Only applications using the unstable RSC APIs are affected. Fixed in 7.18.0.",
       "links": [
         {
           "label": "NVD",
@@ -697,7 +797,7 @@
       "vendor": "Drupal",
       "component": "Media module (oEmbed URL discovery)",
       "title": "oEmbed URL Discovery Follows Attacker-Controlled Discovery Links → Server-Side Request Forgery (SSRF)",
-      "desc": "Drupal core's Media module supports oEmbed, whose specification defines two discovery mechanisms: a static providers.json list and dynamic URL discovery. The URL discovery code path could be leveraged to trick Drupal into making server-side requests to an arbitrary attacker-chosen URL (SSRF). Affected Drupal core before 10.5.12, 10.6.x before 10.6.11, 11.2.x before 11.2.14, and 11.3.x before 11.3.12 (11.0.x and 11.1.x are end-of-life). Fixed by requiring an explicit allow-list of trusted oEmbed discovery hosts via $settings['media_oembed_discovery_trusted_host_patterns'] in settings.php. Disclosed as SA-CORE-2026-008 on 2026-06-17.",
+      "desc": "Drupal core's Media module supports oEmbed, whose specification defines two discovery mechanisms: a static providers.json list and dynamic URL discovery. The URL discovery code path could be leveraged to trick Drupal into making server-side requests to an arbitrary attacker-chosen URL (SSRF). Affected Drupal core before 10.5.12, 10.6.x before 10.6.11, 11.2.x before 11.2.14, and 11.3.x before 11.3.12 (11.0.x and 11.1.x are end-of-life).\nFixed by requiring an explicit allow-list of trusted oEmbed discovery hosts via $settings['media_oembed_discovery_trusted_host_patterns'] in settings.php. Disclosed as SA-CORE-2026-008 on 2026-06-17.",
       "links": [
         {
           "label": "NVD",
@@ -737,7 +837,7 @@
       "vendor": "Podman",
       "component": "Image environment variable parsing",
       "title": "Malformed Image can trick podman run into leaking host environment variables into the container",
-      "desc": "An container image that contains a environment variable with just a key and no value can trick podman into passing that variable from the host into the container. This is made worse by the fact that using an asterisk (*) will cause podman to pass all host variables into the container. So essentially a malicious image can exfiltrate all podman environment variables that are set in the session from where the container is launched. Affected versions >= v1.8.1, <= v5.8.3. Fixed in v5.8.4 and v6.0.0.",
+      "desc": "An container image that contains a environment variable with just a key and no value can trick podman into passing that variable from the host into the container. This is made worse by the fact that using an asterisk (*) will cause podman to pass all host variables into the container. So essentially a malicious image can exfiltrate all podman environment variables that are set in the session from where the container is launched. Affected versions >= v1.8.1, <= v5.8.3.\nFixed in v5.8.4 and v6.0.0.",
       "links": [
         {
           "label": "GHSA",
