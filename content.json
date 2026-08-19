@@ -669,7 +669,7 @@
         }
       ]
     },
- {
+    {
       "cve": "CVE-2026-48612",
       "severity": "High",
       "vendor": "phpBB",
@@ -749,87 +749,127 @@
         }
       ]
     },
-      {
-    "cve": "CVE-2026-48957",
-    "severity": "Moderate",
-    "vendor": "Joomla!",
-    "component": "com_privacy webservice endpoints",
-    "title": "Incorrect Access Control in com_privacy Webservice Endpoints → Unauthorized Dataset Access",
-    "desc": "An improper access check in Joomla's com_privacy webservice endpoints allowed unauthorized users to access privacy datasets. Affected Joomla! CMS 4.0.0–5.4.6 and 6.0.0–6.1.1; fixed in 5.4.7 and 6.1.2.",
-    "links": [
-      {
-        "label": "NVD",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-48957"
-      },
-      {
-        "label": "MITRE",
-        "url": "https://www.cve.org/CVERecord?id=CVE-2026-48957"
-      },
-      {
-        "label": "Joomla Advisory",
-        "url": "https://developer.joomla.org/security-centre/1065-20260711-core-incorrect-access-control-in-com-privacy-webservice-endpoints.html"
-      }
-    ]
-  },
-  {
-    "cve": "CVE-2026-49844",
-    "severity": "Moderate",
-    "vendor": "Apache Log4j",
-    "component": "Log4j API (MapMessage JSON serialization)",
-    "title": "MapMessage.asJson() Serializes Non-Finite Floats as Invalid JSON → Log Record Corruption / Ingestion Disruption",
-    "desc": "MapMessage.asJson() emitted NaN, Infinity, and -Infinity as bare tokens, producing invalid RFC 8259 JSON when attacker-controlled floating-point values were logged through affected JSON layouts. Affected log4j-api 2.13.1–2.25.4, 2.26.0, and 3.0.0-alpha1–3.0.0-beta2; fixed in 2.25.5 and 2.26.1 for the maintained 2.x lines.",
-    "links": [
-      {
-        "label": "NVD",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-49844"
-      },
-      {
-        "label": "MITRE",
-        "url": "https://www.cve.org/CVERecord?id=CVE-2026-49844"
-      },
-      {
-        "label": "Apache Advisory",
-        "url": "https://logging.apache.org/security.html#CVE-2026-49844"
-      },
-      {
-        "label": "oss-security",
-        "url": "https://www.openwall.com/lists/oss-security/2026/07/11/1"
-      },
-      {
-        "label": "Fix PR",
-        "url": "https://github.com/apache/logging-log4j2/pull/4163"
-      }
-    ]
-  },
-  {
-    "cve": "CVE-2026-58058",
-    "severity": "Moderate",
-    "vendor": "Nmap",
-    "component": "libnetutil / ipv6_get_data_primitive()",
-    "title": "IPv6 Extension-Header Bounds Error → Out-of-Bounds Read and Scanner Crash",
-    "desc": "An integer underflow in ipv6_get_data_primitive() allowed a crafted, truncated IPv6 extension header from a scanned target or on-path attacker to advance parsing beyond the captured buffer, causing out-of-bounds reads and a crash during raw IPv6 scans. Affects Nmap through 7.99; fixed upstream by commit bb6754e76bb1686315008e1aa1c40202a513fb83.",
-    "links": [
-      {
-        "label": "NVD",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-58058"
-      },
-      {
-        "label": "MITRE",
-        "url": "https://www.cve.org/CVERecord?id=CVE-2026-58058"
-      },
-      {
-        "label": "SentinelOne",
-        "url": "https://www.sentinelone.com/vulnerability-database/cve-2026-58058/"
-      },
-      {
-        "label": "Fix Commit",
-        "url": "https://github.com/nmap/nmap/commit/bb6754e76bb1686315008e1aa1c40202a513fb83"
-      },
-      {
-        "label": "Nmap Changelog",
-        "url": "https://nmap.org/changelog.html"
-      }
-    ]
-  }
+    {
+      "cve": "CVE-2026-48957",
+      "severity": "Moderate",
+      "vendor": "Joomla!",
+      "component": "com_privacy webservice endpoints",
+      "title": "Incorrect Access Control in com_privacy Webservice Endpoints → Unauthorized Dataset Access",
+      "desc": "An improper access check in Joomla's com_privacy webservice endpoints allowed unauthorized users to access privacy datasets. Affected Joomla! CMS 4.0.0–5.4.6 and 6.0.0–6.1.1; fixed in 5.4.7 and 6.1.2.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-48957"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-48957"
+        },
+        {
+          "label": "Joomla Advisory",
+          "url": "https://developer.joomla.org/security-centre/1065-20260711-core-incorrect-access-control-in-com-privacy-webservice-endpoints.html"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-49844",
+      "severity": "Moderate",
+      "vendor": "Apache Log4j",
+      "component": "Log4j API (MapMessage JSON serialization)",
+      "title": "MapMessage.asJson() Serializes Non-Finite Floats as Invalid JSON → Log Record Corruption / Ingestion Disruption",
+      "desc": "MapMessage.asJson() emitted NaN, Infinity, and -Infinity as bare tokens, producing invalid RFC 8259 JSON when attacker-controlled floating-point values were logged through affected JSON layouts. Affected log4j-api 2.13.1–2.25.4, 2.26.0, and 3.0.0-alpha1–3.0.0-beta2; fixed in 2.25.5 and 2.26.1 for the maintained 2.x lines.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-49844"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-49844"
+        },
+        {
+          "label": "Apache Advisory",
+          "url": "https://logging.apache.org/security.html#CVE-2026-49844"
+        },
+        {
+          "label": "oss-security",
+          "url": "https://www.openwall.com/lists/oss-security/2026/07/11/1"
+        },
+        {
+          "label": "Fix PR",
+          "url": "https://github.com/apache/logging-log4j2/pull/4163"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-58058",
+      "severity": "Moderate",
+      "vendor": "Nmap",
+      "component": "libnetutil / ipv6_get_data_primitive()",
+      "title": "IPv6 Extension-Header Bounds Error → Out-of-Bounds Read and Scanner Crash",
+      "desc": "An integer underflow in ipv6_get_data_primitive() allowed a crafted, truncated IPv6 extension header from a scanned target or on-path attacker to advance parsing beyond the captured buffer, causing out-of-bounds reads and a crash during raw IPv6 scans. Affects Nmap through 7.99; fixed upstream by commit bb6754e76bb1686315008e1aa1c40202a513fb83 and shipped in Nmap 7.991 (2026-08-06), which credits Himanshu Anand for the report.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-58058"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-58058"
+        },
+        {
+          "label": "SentinelOne",
+          "url": "https://www.sentinelone.com/vulnerability-database/cve-2026-58058/"
+        },
+        {
+          "label": "Fix Commit",
+          "url": "https://github.com/nmap/nmap/commit/bb6754e76bb1686315008e1aa1c40202a513fb83"
+        },
+        {
+          "label": "Nmap Changelog",
+          "url": "https://nmap.org/changelog.html"
+        }
+      ]
+    },
+    {
+      "cve": "GHSA-6q6j-f24j-p477",
+      "severity": "Moderate",
+      "vendor": "Ghost",
+      "component": "Comments feature (members API)",
+      "title": "Authorization Bypass in Comments Feature → Unauthorized Access to Comments",
+      "desc": "An input validation issue (CWE-943, Improper Neutralization of Special Elements in Data Query Logic) allowed members to access comments they were not authorized to access. CVSS 3.1 score 6.5 (AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N). Affected Ghost >= v5.9.0, < v6.44.1; fixed in v6.44.1. No CVE assigned. Advisory published 2026-08-11 with credit to Himanshu Anand for responsible disclosure.",
+      "links": [
+        {
+          "label": "GHSA",
+          "url": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-6q6j-f24j-p477"
+        },
+        {
+          "label": "Ghost Update Docs",
+          "url": "https://docs.ghost.org/update"
+        }
+      ]
+    },
+    {
+      "cve": "No CVE (Nmap 7.991)",
+      "severity": "Moderate",
+      "vendor": "Nmap",
+      "component": "TCP options parsing / IPv4 OS detection / DNS label parsing",
+      "title": "Multiple Memory-Safety Issues: Infinite Loop in TCP Options Parsing, OOB Read in IPv4 OS Detection, and Undefined Behavior in DNS Label Parsing",
+      "desc": "Nmap 7.991 (released 2026-08-06) fixed several issues reported by Himanshu Anand: an infinite loop in TCP options parsing and an out-of-bounds memory read in IPv4 OS detection (both triggerable by crafted packets from a scanned target or on-path attacker), an integer underflow in IPv6 extension header processing (tracked separately as CVE-2026-58058), and undefined behavior in DNS label parsing. Affected all Nmap versions through 7.99.",
+      "links": [
+        {
+          "label": "Nmap Changelog",
+          "url": "https://nmap.org/changelog.html"
+        },
+        {
+          "label": "Nmap 7.991 Release",
+          "url": "https://nmap.org/changelog#7.991"
+        },
+        {
+          "label": "Nmap Download",
+          "url": "https://nmap.org/download.html"
+        }
+      ]
+    }
   ]
 }
