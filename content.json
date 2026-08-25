@@ -470,6 +470,48 @@
       ]
     },
     {
+      "cve": "CVE-2026-77634",
+      "severity": "High",
+      "vendor": "CakePHP",
+      "component": "SmtpTransport / Message custom headers",
+      "title": "SmtpTransport Custom Mail Headers → CRLF Header Injection",
+      "desc": "Custom mail headers added with Message::setHeaders() or Message::addHeaders() did not have CRLF bytes removed, allowing header injection when user-controlled data was used in message headers. CakePHP lists the issue as fixed in 4.5.12, 4.6.5, 5.1.8, 5.2.14, and 5.3.7. CVSS 4.0: 8.2 (High). CWE-93.",
+      "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-77634"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-77634"
+        },
+        {
+          "label": "GHSA",
+          "url": "https://github.com/cakephp/cakephp/security/advisories/GHSA-2qh5-382h-3jpc"
+        },
+        {
+          "label": "Fix Commit 1",
+          "url": "https://github.com/cakephp/cakephp/commit/08188962bcd99a95da1e49f62e786f2d688f1e41"
+        },
+        {
+          "label": "Fix Commit 2",
+          "url": "https://github.com/cakephp/cakephp/commit/2afe42b02d8ddc5d442bca5e8bb61910a727646e"
+        },
+        {
+          "label": "Fix Commit 3",
+          "url": "https://github.com/cakephp/cakephp/commit/3e09dae6cbdc983754fa3a8e6aae74da102a3ea1"
+        },
+        {
+          "label": "Fix Commit 4",
+          "url": "https://github.com/cakephp/cakephp/commit/b67b622457362b075bb37e625a82af73a0b3c9c3"
+        },
+        {
+          "label": "Release",
+          "url": "https://github.com/cakephp/cakephp/releases/tag/5.3.7"
+        }
+      ]
+    },
+    {
       "cve": "GHSA-vjqc-q4mp-2rvf",
       "severity": "Unrated",
       "vendor": "CakePHP",
