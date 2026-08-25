@@ -7,7 +7,7 @@
     "ctf_url": "https://ctftime.org/user/144614"
   },
   "about": {
-    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams.\nI specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1–3), built IPS/IDS signatures, and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>.\nI compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023–2025).</p>",
+    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams. I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1–3), built IPS/IDS signatures, and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023–2025).</p>",
     "skills": [
       "Malware Analysis",
       "Reverse Engineering",
@@ -440,54 +440,58 @@
   ],
   "advisories": [
     {
-      "cve": "CVE-2026-70652",
-      "severity": "Low",
-      "vendor": "libvips",
-      "component": "JPEG gain-map encoding / libultrahdr",
-      "title": "Incorrect JPEG Gain-Map Output Buffer Sizing → Heap Buffer Over-Read",
-      "desc": "When compiled with libultrahdr support, libvips could incorrectly size the output buffer while encoding a JPEG with a gain map, causing a possible heap-based buffer over-read. Exploitation requires a pipeline that expands an incoming JPEG to a very large output before encoding. Affected versions <8.18.3; fixed in 8.18.3.",
+      "cve": "CVE-2026-77635",
+      "severity": "Critical",
+      "vendor": "CakePHP",
+      "component": "Database FunctionsBuilder::jsonValue() / PostgresDriver",
+      "title": "FunctionsBuilder::jsonValue() with PostgresDriver → SQL Injection",
+      "desc": "FunctionsBuilder::jsonValue() with PostgresDriver was vulnerable to SQL injection when user-controlled data was supplied to the jsonPath parameter. Affected CakePHP versions are >= 5.1.0 and < 5.1.10, >= 5.2.0 and < 5.2.15, and >= 5.3.0 and < 5.3.7. Fixed in 5.1.10, 5.2.15, and 5.3.7. CVSS 4.0: 9.2 (Critical). CWE-89.",
       "links": [
         {
           "label": "NVD",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-70652"
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-77635"
         },
         {
           "label": "MITRE",
-          "url": "https://www.cve.org/CVERecord?id=CVE-2026-70652"
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-77635"
         },
         {
           "label": "GHSA",
-          "url": "https://github.com/libvips/libvips/security/advisories/GHSA-h27h-jf9v-m8rg"
+          "url": "https://github.com/cakephp/cakephp/security/advisories/GHSA-fxf7-vhh8-7vpq"
         },
         {
           "label": "Fix Commit",
-          "url": "https://github.com/libvips/libvips/commit/cff17794f0698a4f47c74bb31c9700b2c83252a8"
+          "url": "https://github.com/cakephp/cakephp/commit/138f2f61486532c29ee4d106da2a9848c1ff1ab3"
+        },
+        {
+          "label": "Release",
+          "url": "https://github.com/cakephp/cakephp/releases/tag/5.3.7"
         }
       ]
     },
     {
-      "cve": "CVE-2026-70653",
-      "severity": "Moderate",
-      "vendor": "libvips",
-      "component": "Radiance RLE image decoder",
-      "title": "Crafted RLE Radiance Image Decoding → Four-Byte Heap Buffer Over-Read",
-      "desc": "When compiled with Radiance image-loading support, libvips could read and disclose four bytes beyond a heap buffer while decoding a specially crafted run-length encoded Radiance image, most likely exposing bytes from other image data. Affected versions <8.18.3; fixed in 8.18.3.",
+      "cve": "GHSA-vjqc-q4mp-2rvf",
+      "severity": "Unrated",
+      "vendor": "CakePHP",
+      "component": "Database FunctionsBuilder",
+      "title": "FunctionsBuilder Parameter Handling and Escaping Weakness",
+      "desc": "CakePHP shipped a security fix for parameter handling and escaping in FunctionsBuilder in the July 2026 security releases. The remediation landed as 'Fix parameter handling in FunctionsBuilder' (commit ab608711674ac662af7315c5cdf1e0fbe2000e45). The fix was included in CakePHP 4.5.12, 4.6.5, 5.1.8, 5.2.14, and 5.3.7. At the time of this refresh, public CVE feeds had not yet indexed a CVE ID or severity for GHSA-vjqc-q4mp-2rvf, so the GHSA ID is used here rather than guessing.",
       "links": [
         {
-          "label": "NVD",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-70653"
-        },
-        {
-          "label": "MITRE",
-          "url": "https://www.cve.org/CVERecord?id=CVE-2026-70653"
-        },
-        {
           "label": "GHSA",
-          "url": "https://github.com/libvips/libvips/security/advisories/GHSA-fh99-55jf-5hj3"
+          "url": "https://github.com/cakephp/cakephp/security/advisories/GHSA-vjqc-q4mp-2rvf"
         },
         {
           "label": "Fix Commit",
-          "url": "https://github.com/libvips/libvips/commit/dc945573e15d598054e701c65b90a35b16b19304"
+          "url": "https://github.com/cakephp/cakephp/commit/ab608711674ac662af7315c5cdf1e0fbe2000e45"
+        },
+        {
+          "label": "CakePHP 4.6.5",
+          "url": "https://bakery.cakephp.org/2026/07/14/cakephp_465.html"
+        },
+        {
+          "label": "CakePHP 5.3.7",
+          "url": "https://bakery.cakephp.org/2026/07/13/cakephp_537.html"
         }
       ]
     },
@@ -497,7 +501,7 @@
       "vendor": "Symfony",
       "component": "HtmlSanitizer",
       "title": "HtmlSanitizer URL Attributes Pass Through BiDi Override Characters → Visual href Spoofing",
-      "desc": "UrlSanitizer::parse() accepted URLs containing Unicode explicit-direction BiDi formatting characters (U+202A–U+202E, U+2066–U+2069) and passed them unchanged into href/src attributes. When rendered, the override characters reverse the visual ordering of the URL text — the displayed link can differ arbitrarily from the actual destination. Classic visual-spoofing / phishing primitive against viewers of sanitized content.",
+      "desc": "UrlSanitizer::parse() accepted URLs containing Unicode explicit-direction BiDi formatting characters (U+202A–U+202E, U+2066–U+2069) and passed them unchanged into href/src attributes.\nWhen rendered, the override characters reverse the visual ordering of the URL text — the displayed link can differ arbitrarily from the actual destination.\nClassic visual-spoofing / phishing primitive against viewers of sanitized content.",
       "links": [
         {
           "label": "NVD",
@@ -518,38 +522,12 @@
       ]
     },
     {
-      "cve": "CVE-2026-45753",
-      "severity": "Low",
-      "vendor": "Symfony",
-      "component": "HtmlSanitizer / UrlAttributeSanitizer",
-      "title": "UrlAttributeSanitizer Omits action/formaction/poster/cite → javascript: URI Survives Sanitization (XSS)",
-      "desc": "UrlAttributeSanitizer did not treat action, formaction, poster, and cite as URL-valued attributes, so dangerous schemes in those attributes were not validated. In deliberately permissive sanitizer configurations, a javascript: URI could therefore survive sanitization; action and formaction exploitation additionally requires the victim to submit a form or click a button. Affected Symfony >=6.1,<6.4.40; >=7,<7.4.12; and >=8,<8.0.12; fixed in 6.4.40, 7.4.12, and 8.0.12.",
-      "links": [
-        {
-          "label": "NVD",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-45753"
-        },
-        {
-          "label": "MITRE",
-          "url": "https://www.cve.org/CVERecord?id=CVE-2026-45753"
-        },
-        {
-          "label": "GHSA",
-          "url": "https://github.com/symfony/symfony/security/advisories/GHSA-hhg7-c65m-h7ff"
-        },
-        {
-          "label": "Symfony Advisory",
-          "url": "https://symfony.com/blog/cve-2026-45753-htmlsanitizer-urlattributesanitizer-omits-action-formaction-poster-cite-javascript-uri-survives-sanitization-xss"
-        }
-      ]
-    },
-    {
       "cve": "CVE-2026-45754",
       "severity": "Moderate",
       "vendor": "Symfony",
       "component": "Mailjet Mailer & LOX24 Notifier",
       "title": "Mailjet and LOX24 Webhook Parsers Never Verify the Configured Secret → Unauthenticated Webhook Event Injection",
-      "desc": "Both bridges' doParse() methods received the configured webhook secret but never read it; the payload was decoded and returned unconditionally. Any POST to the webhook endpoint was accepted even when a secret was configured, allowing forged bounce / spam / open / click / delivery events — suppression-list corruption, delivery-metrics fraud, etc.",
+      "desc": "Both bridges' doParse() methods received the configured webhook secret but never read it; the payload was decoded and returned unconditionally.\nAny POST to the webhook endpoint was accepted even when a secret was configured, allowing forged bounce / spam / open / click / delivery events — suppression-list corruption, delivery-metrics fraud, etc.",
       "links": [
         {
           "label": "NVD",
@@ -575,7 +553,7 @@
       "vendor": "Symfony",
       "component": "Mailtrap Mailer",
       "title": "Mailtrap Webhook Parser Never Verifies the X-Mt-Signature HMAC → Unauthenticated Webhook Event Injection",
-      "desc": "The Mailtrap mailer bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Mt-Signature HMAC header Mailtrap sends with every request. Any POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivery / bounce / open / click / spam events.",
+      "desc": "The Mailtrap mailer bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Mt-Signature HMAC header Mailtrap sends with every request.\nAny POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivery / bounce / open / click / spam events.",
       "links": [
         {
           "label": "NVD",
@@ -601,7 +579,7 @@
       "vendor": "Symfony",
       "component": "JsonPath",
       "title": "JsonPath Evaluates Attacker-Controlled Regular Expressions in match()/search() Without Limits → ReDoS",
-      "desc": "JsonPath's match() and search() filter functions compiled caller-supplied patterns directly into preg_match() with no length cap, no RFC 9485 i-regexp restriction, and no backtrack bound. A pathological pattern such as $[?search(@, \"(a+)+$\")] pinned a CPU core for seconds per request — a handful of concurrent requests exhausted the worker pool, yielding denial-of-service. Suppressed PCRE errors meant the attack left no log trace.",
+      "desc": "JsonPath's match() and search() filter functions compiled caller-supplied patterns directly into preg_match() with no length cap, no RFC 9485 i-regexp restriction, and no backtrack bound.\nA pathological pattern such as $[?search(@, \"(a+)+$\")] pinned a CPU core for seconds per request — a handful of concurrent requests exhausted the worker pool, yielding denial-of-service.\nSuppressed PCRE errors meant the attack left no log trace.",
       "links": [
         {
           "label": "NVD",
@@ -627,7 +605,7 @@
       "vendor": "Symfony",
       "component": "Twilio Notifier",
       "title": "Twilio Webhook Parser Never Verifies the X-Twilio-Signature HMAC → Unauthenticated Webhook Event Injection",
-      "desc": "The Twilio SMS notifier bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Twilio-Signature HMAC header Twilio sends with every request. Any POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivered / failed / undelivered status events with downstream impact on metrics and automation triggers.",
+      "desc": "The Twilio SMS notifier bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Twilio-Signature HMAC header Twilio sends with every request.\nAny POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivered / failed / undelivered status events with downstream impact on metrics and automation triggers. Affected Symfony versions are >= 6.4.0 and < 6.4.40, >= 7.0.0 and < 7.4.12, and >= 8.0.0 and < 8.0.12; fixed in 6.4.40, 7.4.12, and 8.0.12.",
       "links": [
         {
           "label": "NVD",
@@ -638,8 +616,16 @@
           "url": "https://www.cve.org/CVERecord?id=CVE-2026-47212"
         },
         {
+          "label": "GHSA",
+          "url": "https://github.com/symfony/symfony/security/advisories/GHSA-55rj-x2vc-4whq"
+        },
+        {
+          "label": "Fix Commit",
+          "url": "https://github.com/symfony/symfony/commit/8545fb2af6c07dfb5ef0fc8d9bccf86db2c94356"
+        },
+        {
           "label": "Symfony Advisory",
-          "url": "https://symfony.com/blog/cve-2026-47212-twilio-notifier-webhook-parser-never-verifies-the-x-twilio-signature-hmac-unauthenticated-webhook-event-injection"
+          "url": "https://symfony.com/blog/cve-2026-47212-twilio-notifier-webhook-parser-never-verifies-the-x-twilio-signature-hmac-unauthenticated-event-injection"
         }
       ]
     },
@@ -649,7 +635,7 @@
       "vendor": "Hugo",
       "component": "resources.Get / RootMappingFs",
       "title": "Symlink Confinement Bypass in resources.Get → Arbitrary File Read",
-      "desc": "A regression introduced in v0.123.0 caused RootMappingFs.statRoot to call Stat (which follows symlinks) instead of Lstat, so a direct resources.Get \"somefile\" where somefile was a symlink pointing outside the mount would return the target's contents. A symlink planted inside a theme or local mount (e.g. a locally-vendored theme under themes/) could therefore read arbitrary files reachable to the user running hugo.\nThemes mounted as Go modules from GitHub have symlinks stripped and are not affected. Fixed in v0.162.0, which calls LstatIfPossible and rejects symlinked entries.",
+      "desc": "A regression introduced in v0.123.0 caused RootMappingFs.statRoot to call Stat (which follows symlinks) instead of Lstat, so a direct resources.Get \"somefile\" where somefile was a symlink pointing outside the mount would return the target's contents.\nA symlink planted inside a theme or local mount (e.g. a locally-vendored theme under themes/) could therefore read arbitrary files reachable to the user running hugo. Themes mounted as Go modules from GitHub have symlinks stripped and are not affected.\nFixed in v0.162.0, which calls LstatIfPossible and rejects symlinked entries.",
       "links": [
         {
           "label": "NVD",
@@ -665,7 +651,11 @@
         },
         {
           "label": "Fix Commit",
-          "url": "https://github.com/gohugoio/hugo/commit/f8b5fa09a6"
+          "url": "https://github.com/gohugoio/hugo/commit/f8b5fa09a64950c32b803821ede411ebfe772b7a"
+        },
+        {
+          "label": "Release",
+          "url": "https://github.com/gohugoio/hugo/releases/tag/v0.162.0"
         }
       ]
     },
@@ -675,7 +665,7 @@
       "vendor": "Hugo",
       "component": "resources.GetRemote",
       "title": "security.http.urls Allow-List Bypass via HTTP Redirects → SSRF",
-      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects. An allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid — for example http://localhost/ or an internal IP — and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1.\nFixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
+      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects.\nAn allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid — for example http://localhost/ or an internal IP — and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1.\nFixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
       "links": [
         {
           "label": "NVD",
@@ -691,7 +681,11 @@
         },
         {
           "label": "Fix Commit",
-          "url": "https://github.com/gohugoio/hugo/commit/86fbb0f7a8"
+          "url": "https://github.com/gohugoio/hugo/commit/86fbb0f7a8bbb93e2e916390de9e5a4f24bf9f50"
+        },
+        {
+          "label": "Release",
+          "url": "https://github.com/gohugoio/hugo/releases/tag/v0.162.0"
         }
       ]
     },
@@ -701,7 +695,7 @@
       "vendor": "MyBB",
       "component": "Default CAPTCHA (class_captcha.php)",
       "title": "Default CAPTCHA Missing Invalidation → Challenge Replay / CAPTCHA Bypass",
-      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics. Several endpoints — Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php), and Send to Friend (sendthread.php) — never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired.\nCWE-837 (Improper Enforcement of a Single, Unique Action). Fixed in MyBB 1.8.40.",
+      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics.\nSeveral endpoints — Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php), and Send to Friend (sendthread.php) — never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired. CWE-837 (Improper Enforcement of a Single, Unique Action).\nFixed in MyBB 1.8.40.",
       "links": [
         {
           "label": "NVD",
@@ -726,34 +720,12 @@
       ]
     },
     {
-      "cve": "No CVE (MyBB 1.8.40)",
-      "severity": "Info",
-      "vendor": "MyBB",
-      "component": "Contact page redirect handling (contact.php)",
-      "title": "Unvalidated Contact Page Redirect Target → Open Redirect",
-      "desc": "The Contact module accepted a redirect target from the from request parameter or HTTP Referer header and passed it to redirect() without sufficient verification, enabling attacker-controlled redirects after contact-form actions. MyBB credits Himanshu Anand for reporting the open-redirect weakness; the redirect handling was corrected in MyBB 1.8.40.",
-      "links": [
-        {
-          "label": "Release Notes",
-          "url": "https://mybb.com/versions/1.8.40/"
-        },
-        {
-          "label": "Release Announcement",
-          "url": "https://blog.mybb.com/2026/05/28/mybb-1-8-40-released-security-maintenance-release/"
-        },
-        {
-          "label": "Related Fix",
-          "url": "https://github.com/mybb/mybb/commit/04aa5da6ecd41c0e84456a733df8b28974f4e9db"
-        }
-      ]
-    },
-    {
       "cve": "CVE-2026-53667",
       "severity": "Moderate",
       "vendor": "React Router (Remix)",
-      "component": "Unstable RSC APIs / RSCErrorHandler",
-      "title": "RSCErrorHandler Missing Protocol Validation → Redirect-Based XSS",
-      "desc": "In React Router 7.11.0 through 7.17.x, the unstable RSC error-handling path did not validate the protocol of redirect targets from untrusted sources, allowing an attacker-supplied redirect target to create an XSS vector. Only applications using the unstable RSC APIs are affected. Fixed in 7.18.0.",
+      "component": "RSCErrorHandler (unstable RSC APIs)",
+      "title": "RSCErrorHandler Missing Protocol Validation → Cross-Site Scripting (XSS)",
+      "desc": "React Router's RSCErrorHandler did not fully validate redirect protocols in the unstable React Server Components (RSC) error-handling path. An attacker-controlled redirect target could result in client-side XSS. This only affects applications using the unstable RSC APIs. Affected react-router versions >= 7.11.0 and < 7.18.0; fixed in 7.18.0. This is a follow-up to GHSA-8646-j5j9-6r62.",
       "links": [
         {
           "label": "NVD",
@@ -766,6 +738,14 @@
         {
           "label": "GHSA",
           "url": "https://github.com/remix-run/react-router/security/advisories/GHSA-h8fp-f39c-q6mh"
+        },
+        {
+          "label": "Fix Commit",
+          "url": "https://github.com/remix-run/react-router/commit/ce596e823f0d7b883a433af1d5a839a8b9fe0242"
+        },
+        {
+          "label": "Release",
+          "url": "https://github.com/remix-run/react-router/releases/tag/react-router@7.18.0"
         }
       ]
     },
@@ -775,7 +755,7 @@
       "vendor": "phpBB",
       "component": "OAuth Implementation",
       "title": "Improper State Verification in OAuth → Account Takeover",
-      "desc": "Improper state verification in the OAuth implementation allowed an attacker to manipulate the authentication flow and link a victim's account to an attacker-controlled account. One variant could be exploited even when OAuth was not configured or enabled, resulting in unauthorized account linking and potential account takeover. Affected phpBB 3.3.0 through 3.3.16. Fixed in phpBB 3.3.17.",
+      "desc": "Improper state verification in the OAuth implementation allowed an attacker to manipulate the authentication flow and link a victim's account to an attacker-controlled account.\nOne variant could be exploited even when OAuth was not configured or enabled, resulting in unauthorized account linking and potential account takeover. Affected phpBB 3.3.0 through 3.3.16.\nFixed in phpBB 3.3.17. CNA CVSS 3.0: 8.0 (High), CWE-352.",
       "links": [
         {
           "label": "NVD",
@@ -784,6 +764,10 @@
         {
           "label": "MITRE",
           "url": "https://www.cve.org/CVERecord?id=CVE-2026-48612"
+        },
+        {
+          "label": "GHSA",
+          "url": "https://github.com/advisories/GHSA-575v-33q9-fpgm"
         },
         {
           "label": "Release Notes",
@@ -797,7 +781,7 @@
       "vendor": "Drupal",
       "component": "Media module (oEmbed URL discovery)",
       "title": "oEmbed URL Discovery Follows Attacker-Controlled Discovery Links → Server-Side Request Forgery (SSRF)",
-      "desc": "Drupal core's Media module supports oEmbed, whose specification defines two discovery mechanisms: a static providers.json list and dynamic URL discovery. The URL discovery code path could be leveraged to trick Drupal into making server-side requests to an arbitrary attacker-chosen URL (SSRF). Affected Drupal core before 10.5.12, 10.6.x before 10.6.11, 11.2.x before 11.2.14, and 11.3.x before 11.3.12 (11.0.x and 11.1.x are end-of-life).\nFixed by requiring an explicit allow-list of trusted oEmbed discovery hosts via $settings['media_oembed_discovery_trusted_host_patterns'] in settings.php. Disclosed as SA-CORE-2026-008 on 2026-06-17.",
+      "desc": "Drupal core's Media module supports oEmbed, whose specification defines two discovery mechanisms: a static providers.json list and dynamic URL discovery.\nThe URL discovery code path could be leveraged to trick Drupal into making server-side requests to an arbitrary attacker-chosen URL (SSRF). Affected Drupal core before 10.5.12, 10.6.x before 10.6.11, 11.2.x before 11.2.14, and 11.3.x before 11.3.12 (11.0.x and 11.1.x are end-of-life). Fixed by requiring an explicit allow-list of trusted oEmbed discovery hosts via $settings['media_oembed_discovery_trusted_host_patterns'] in settings.php.\nDisclosed as SA-CORE-2026-008 on 2026-06-17.",
       "links": [
         {
           "label": "NVD",
@@ -837,8 +821,16 @@
       "vendor": "Podman",
       "component": "Image environment variable parsing",
       "title": "Malformed Image can trick podman run into leaking host environment variables into the container",
-      "desc": "An container image that contains a environment variable with just a key and no value can trick podman into passing that variable from the host into the container. This is made worse by the fact that using an asterisk (*) will cause podman to pass all host variables into the container. So essentially a malicious image can exfiltrate all podman environment variables that are set in the session from where the container is launched. Affected versions >= v1.8.1, <= v5.8.3.\nFixed in v5.8.4 and v6.0.0.",
+      "desc": "An container image that contains a environment variable with just a key and no value can trick podman into passing that variable from the host into the container.\nThis is made worse by the fact that using an asterisk (*) will cause podman to pass all host variables into the container. So essentially a malicious image can exfiltrate all podman environment variables that are set in the session from where the container is launched. Affected versions >= v1.8.1, <= v5.8.3.\nFixed in v5.8.4 and v6.0.0.",
       "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-57231"
+        },
+        {
+          "label": "MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-57231"
+        },
         {
           "label": "GHSA",
           "url": "https://github.com/podman-container-tools/podman/security/advisories/GHSA-4hq8-gpf5-8p68"
@@ -846,128 +838,6 @@
         {
           "label": "Fix Commit",
           "url": "https://github.com/podman-container-tools/podman/commit/6c431b73dbf8e4b20b778644d7a80caebdb75050"
-        }
-      ]
-    },
-    {
-      "cve": "CVE-2026-48957",
-      "severity": "Moderate",
-      "vendor": "Joomla!",
-      "component": "com_privacy webservice endpoints",
-      "title": "Incorrect Access Control in com_privacy Webservice Endpoints → Unauthorized Dataset Access",
-      "desc": "An improper access check in Joomla's com_privacy webservice endpoints allowed unauthorized users to access privacy datasets. Affected Joomla! CMS 4.0.0–5.4.6 and 6.0.0–6.1.1; fixed in 5.4.7 and 6.1.2.",
-      "links": [
-        {
-          "label": "NVD",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-48957"
-        },
-        {
-          "label": "MITRE",
-          "url": "https://www.cve.org/CVERecord?id=CVE-2026-48957"
-        },
-        {
-          "label": "Joomla Advisory",
-          "url": "https://developer.joomla.org/security-centre/1065-20260711-core-incorrect-access-control-in-com-privacy-webservice-endpoints.html"
-        }
-      ]
-    },
-    {
-      "cve": "CVE-2026-49844",
-      "severity": "Moderate",
-      "vendor": "Apache Log4j",
-      "component": "Log4j API (MapMessage JSON serialization)",
-      "title": "MapMessage.asJson() Serializes Non-Finite Floats as Invalid JSON → Log Record Corruption / Ingestion Disruption",
-      "desc": "MapMessage.asJson() emitted NaN, Infinity, and -Infinity as bare tokens, producing invalid RFC 8259 JSON when attacker-controlled floating-point values were logged through affected JSON layouts. Affected log4j-api 2.13.1–2.25.4, 2.26.0, and 3.0.0-alpha1–3.0.0-beta2; fixed in 2.25.5 and 2.26.1 for the maintained 2.x lines.",
-      "links": [
-        {
-          "label": "NVD",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-49844"
-        },
-        {
-          "label": "MITRE",
-          "url": "https://www.cve.org/CVERecord?id=CVE-2026-49844"
-        },
-        {
-          "label": "Apache Advisory",
-          "url": "https://logging.apache.org/security.html#CVE-2026-49844"
-        },
-        {
-          "label": "oss-security",
-          "url": "https://www.openwall.com/lists/oss-security/2026/07/11/1"
-        },
-        {
-          "label": "Fix PR",
-          "url": "https://github.com/apache/logging-log4j2/pull/4163"
-        }
-      ]
-    },
-    {
-      "cve": "CVE-2026-58058",
-      "severity": "Moderate",
-      "vendor": "Nmap",
-      "component": "libnetutil / ipv6_get_data_primitive()",
-      "title": "IPv6 Extension-Header Bounds Error → Out-of-Bounds Read and Scanner Crash",
-      "desc": "An integer underflow in ipv6_get_data_primitive() allowed a crafted, truncated IPv6 extension header from a scanned target or on-path attacker to advance parsing beyond the captured buffer, causing out-of-bounds reads and a crash during raw IPv6 scans. Affects Nmap through 7.99; fixed upstream by commit bb6754e76bb1686315008e1aa1c40202a513fb83 and shipped in Nmap 7.991 (2026-08-06), which credits Himanshu Anand for the report.",
-      "links": [
-        {
-          "label": "NVD",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-58058"
-        },
-        {
-          "label": "MITRE",
-          "url": "https://www.cve.org/CVERecord?id=CVE-2026-58058"
-        },
-        {
-          "label": "SentinelOne",
-          "url": "https://www.sentinelone.com/vulnerability-database/cve-2026-58058/"
-        },
-        {
-          "label": "Fix Commit",
-          "url": "https://github.com/nmap/nmap/commit/bb6754e76bb1686315008e1aa1c40202a513fb83"
-        },
-        {
-          "label": "Nmap Changelog",
-          "url": "https://nmap.org/changelog.html"
-        }
-      ]
-    },
-    {
-      "cve": "GHSA-6q6j-f24j-p477",
-      "severity": "Moderate",
-      "vendor": "Ghost",
-      "component": "Comments feature (members API)",
-      "title": "Authorization Bypass in Comments Feature → Unauthorized Access to Comments",
-      "desc": "An input validation issue (CWE-943, Improper Neutralization of Special Elements in Data Query Logic) allowed members to access comments they were not authorized to access. CVSS 3.1 score 6.5 (AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N). Affected Ghost >= v5.9.0, < v6.44.1; fixed in v6.44.1. No CVE assigned. Advisory published 2026-08-11 with credit to Himanshu Anand for responsible disclosure.",
-      "links": [
-        {
-          "label": "GHSA",
-          "url": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-6q6j-f24j-p477"
-        },
-        {
-          "label": "Ghost Update Docs",
-          "url": "https://docs.ghost.org/update"
-        }
-      ]
-    },
-    {
-      "cve": "No CVE (Nmap 7.991)",
-      "severity": "Moderate",
-      "vendor": "Nmap",
-      "component": "TCP options parsing / IPv4 OS detection / DNS label parsing",
-      "title": "Multiple Memory-Safety Issues: Infinite Loop in TCP Options Parsing, OOB Read in IPv4 OS Detection, and Undefined Behavior in DNS Label Parsing",
-      "desc": "Nmap 7.991 (released 2026-08-06) fixed several issues reported by Himanshu Anand: an infinite loop in TCP options parsing and an out-of-bounds memory read in IPv4 OS detection (both triggerable by crafted packets from a scanned target or on-path attacker), an integer underflow in IPv6 extension header processing (tracked separately as CVE-2026-58058), and undefined behavior in DNS label parsing. Affected all Nmap versions through 7.99.",
-      "links": [
-        {
-          "label": "Nmap Changelog",
-          "url": "https://nmap.org/changelog.html"
-        },
-        {
-          "label": "Nmap 7.991 Release",
-          "url": "https://nmap.org/changelog#7.991"
-        },
-        {
-          "label": "Nmap Download",
-          "url": "https://nmap.org/download.html"
         }
       ]
     }
