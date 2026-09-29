@@ -7,7 +7,7 @@
     "ctf_url": "https://ctftime.org/user/144614"
   },
   "about": {
-    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams. I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong>, and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1–3), built IPS/IDS signatures, and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023–2025).</p>",
+    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams. I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong> and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1-3), built IPS/IDS signatures and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023-2025).</p>",
     "skills": [
       "Malware Analysis",
       "Reverse Engineering",
@@ -27,13 +27,13 @@
       "role": "Firewall Security Analyst",
       "company": "Cloudflare",
       "period": "Current",
-      "desc": "WAF rule engineering, zero-day response, client-side threat research, and AI-powered detection."
+      "desc": "WAF rule engineering, zero-day response, client-side threat research and AI-powered detection."
     },
     {
       "role": "Security Researcher",
       "company": "Symantec (now Broadcom)",
       "period": "Previous",
-      "desc": "Malware analysis, SOC operations, IPS/IDS rule development, exploit analysis, and threat intelligence."
+      "desc": "Malware analysis, SOC operations, IPS/IDS rule development, exploit analysis and threat intelligence."
     }
   ],
   "stats": [
@@ -103,7 +103,7 @@
     {
       "title": "How Traffic Hijacking and Affiliate Fraud Harm Websites",
       "url": "https://cside.dev/blog/how-traffic-hijacking-and-affiliate-fraud-can-harm-websites-and-users",
-      "desc": "How malicious actors hijack traffic and commit affiliate fraud — and defenses that work.",
+      "desc": "How malicious actors hijack traffic and commit affiliate fraud: and defenses that work.",
       "tags": [
         "c/side",
         "Fraud"
@@ -289,24 +289,24 @@
   ],
   "talks": [
     {
-      "title": "Area41 2024 — Public Cloud Public Attacks",
+      "title": "Area41 2024: Public Cloud Public Attacks",
       "desc": "A summary of attacks seen by Cloud Intel.",
       "pdf": "https://pub-a30995ed030c4d44b481c4d222933301.r2.dev/Public%20Cloud%20public%20attacks_%20A%20summary%20of%20attacks%20seen%20by%20Cloud%20Intel.pdf",
       "video": "https://www.youtube.com/embed/3eicVoU16B0"
     },
     {
-      "title": "Black Hat Asia 2024 — CalMal: Malware Clustering via Unsupervised ML",
+      "title": "Black Hat Asia 2024: CalMal: Malware Clustering via Unsupervised ML",
       "desc": "Arsenal demo of unsupervised malware family classification.",
       "pdf": "https://pub-a30995ed030c4d44b481c4d222933301.r2.dev/BH-AS24-PPT-Arsenal.pdf",
       "github": "https://github.com/unknownhad/CalMal"
     },
     {
-      "title": "VB2017 — The Router of All Evil",
+      "title": "VB2017: The Router of All Evil",
       "desc": "Router exploitation and botnet infrastructure analysis.",
       "video": "https://www.youtube.com/embed/4VzXp4VGpoc"
     },
     {
-      "title": "VB2016 — One-Click Fileless Infection",
+      "title": "VB2016: One-Click Fileless Infection",
       "desc": "Fileless malware techniques and detection challenges.",
       "video": "https://www.youtube.com/embed/EIIFly_iR8Y"
     }
@@ -319,7 +319,7 @@
     },
     {
       "outlet": "Computerworld",
-      "title": "Short-lived Certificates — What IT Should Know",
+      "title": "Short-lived Certificates: What IT Should Know",
       "url": "https://www.computerworld.com/article/3631627/website-certificates-that-expire-every-six-weeks-what-it-should-know.html"
     },
     {
@@ -329,7 +329,7 @@
     },
     {
       "outlet": "Cloudflare TV",
-      "title": "Security Week — Magecart Attacks",
+      "title": "Security Week: Magecart Attacks",
       "url": "https://cloudflare.tv/shows/security-week/what-launched-today-monday-march-4/dgMY99gD"
     }
   ],
@@ -440,6 +440,34 @@
   ],
   "advisories": [
     {
+      "cve": "Zimbra Collaboration 10.1.21 Security Advisory",
+      "severity": "Not specified",
+      "vendor": "Zimbra",
+      "component": "Self-service password recovery",
+      "title": "Predictable Recovery Codes Could Allow Password Reset",
+      "desc": "A flaw in the self-service password recovery mechanism could let an unauthenticated attacker predict recovery codes and reset a user's password. Zimbra credited Himanshu Anand and Hyunwoo Kim for reporting the issue in its Zimbra Collaboration 10.1.21 security advisory published on 2026-09-24.",
+      "links": [
+        {
+          "label": "Zimbra Security Advisory",
+          "url": "https://wiki.zimbra.com/wiki/Security_Center"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-63279",
+      "severity": "Not specified",
+      "vendor": "LibreOffice / The Document Foundation",
+      "component": "PICT image import",
+      "title": "Out-of-Bounds Read in PICT Image Import",
+      "desc": "LibreOffice's PICT image importer contained an out-of-bounds read. The Document Foundation credited Himanshu Anand for reporting the issue. The fix was released in LibreOffice 26.2.5.",
+      "links": [
+        {
+          "label": "LibreOffice Security Advisory",
+          "url": "https://www.libreoffice.org/about-us/security/advisories/cve-2026-63279/"
+        }
+      ]
+    },
+    {
       "cve": "GHSA-xcgh-2828-cvmx",
       "severity": "Moderate",
       "vendor": "Ghost",
@@ -499,7 +527,7 @@
       "vendor": "CakePHP",
       "component": "Database FunctionsBuilder::jsonValue() / PostgresDriver",
       "title": "FunctionsBuilder::jsonValue() with PostgresDriver → SQL Injection",
-      "desc": "The PostgreSQL jsonValue() implementation could mishandle an untrusted JSON-path argument, resulting in SQL injection. Both cakephp/cakephp and cakephp/database are affected in >= 5.1.0 and < 5.1.10, >= 5.2.0 and < 5.2.15, and >= 5.3.0 and < 5.3.7. Fixed in 5.1.10, 5.2.15, and 5.3.7. CNA CVSS 4.0: 9.2 (Critical); the repository advisory labels the issue High. CWE-89.",
+      "desc": "The PostgreSQL jsonValue() implementation could mishandle an untrusted JSON-path argument, resulting in SQL injection. Both cakephp/cakephp and cakephp/database are affected in >= 5.1.0 and < 5.1.10, >= 5.2.0 and < 5.2.15 and >= 5.3.0 and < 5.3.7. Fixed in 5.1.10, 5.2.15 and 5.3.7. CNA CVSS 4.0: 9.2 (Critical); the repository advisory labels the issue High. CWE-89.",
       "links": [
         {
           "label": "NVD",
@@ -553,7 +581,7 @@
       "vendor": "CakePHP",
       "component": "SmtpTransport / Message custom headers",
       "title": "SmtpTransport Custom Mail Headers → CRLF Header Injection",
-      "desc": "Untrusted custom email header values could introduce additional headers because CRLF characters were not removed. Affected cakephp/cakephp versions: >= 4.5.0 and < 4.5.12; >= 4.6.0 and < 4.6.5; >= 5.0.0 and < 5.1.9; >= 5.2.0 and < 5.2.14; >= 5.3.0 and < 5.3.7. Fixed in 4.5.12, 4.6.5, 5.1.9, 5.2.14, and 5.3.7. CNA CVSS 4.0: 8.2 (High); the repository advisory labels the issue Moderate. CWE-93.",
+      "desc": "Untrusted custom email header values could introduce additional headers because CRLF characters were not removed. Affected cakephp/cakephp versions: >= 4.5.0 and < 4.5.12; >= 4.6.0 and < 4.6.5; >= 5.0.0 and < 5.1.9; >= 5.2.0 and < 5.2.14; >= 5.3.0 and < 5.3.7. Fixed in 4.5.12, 4.6.5, 5.1.9, 5.2.14 and 5.3.7. CNA CVSS 4.0: 8.2 (High); the repository advisory labels the issue Moderate. CWE-93.",
       "links": [
         {
           "label": "NVD",
@@ -623,7 +651,7 @@
       "vendor": "CakePHP",
       "component": "Database FunctionsBuilder",
       "title": "FunctionsBuilder Parameter Handling → SQL Injection in Multiple Methods",
-      "desc": "Insufficient validation of type, part, and unit arguments in FunctionsBuilder methods including cast(), extract(), datePart(), and dateAdd() could permit SQL injection when those arguments include untrusted input. Both cakephp/cakephp and cakephp/database are affected: < 4.5.12; >= 4.6.0 and < 4.6.5; >= 5.0.0 and < 5.1.9; >= 5.2.0 and < 5.2.14; >= 5.3.0 and < 5.3.7. Fixed in 4.5.12, 4.6.5, 5.1.9, 5.2.14, and 5.3.7. The public repository advisory assigns CVE-2026-79752 and High severity, without a numeric CVSS score. CWE-89.",
+      "desc": "Insufficient validation of type, part and unit arguments in FunctionsBuilder methods including cast(), extract(), datePart() and dateAdd() could permit SQL injection when those arguments include untrusted input. Both cakephp/cakephp and cakephp/database are affected: < 4.5.12; >= 4.6.0 and < 4.6.5; >= 5.0.0 and < 5.1.9; >= 5.2.0 and < 5.2.14; >= 5.3.0 and < 5.3.7. Fixed in 4.5.12, 4.6.5, 5.1.9, 5.2.14 and 5.3.7. The public repository advisory assigns CVE-2026-79752 and High severity, without a numeric CVSS score. CWE-89.",
       "links": [
         {
           "label": "GHSA",
@@ -673,7 +701,7 @@
       "vendor": "Symfony",
       "component": "HtmlSanitizer",
       "title": "HtmlSanitizer URL Attributes Pass Through BiDi Override Characters → Visual href Spoofing",
-      "desc": "UrlSanitizer::parse() accepted URLs containing Unicode explicit-direction BiDi formatting characters (U+202A–U+202E, U+2066–U+2069) and passed them unchanged into href/src attributes.\nWhen rendered, the override characters reverse the visual ordering of the URL text — the displayed link can differ arbitrarily from the actual destination.\nClassic visual-spoofing / phishing primitive against viewers of sanitized content.\nAffected symfony/html-sanitizer and symfony/symfony versions: >= 6.1.0 and < 6.4.40; >= 7.0.0 and < 7.4.12; >= 8.0.0 and < 8.0.12. Fixed in 6.4.40, 7.4.12, and 8.0.12.",
+      "desc": "UrlSanitizer::parse() accepted URLs containing Unicode explicit-direction BiDi formatting characters (U+202A-U+202E, U+2066-U+2069) and passed them unchanged into href/src attributes.\nWhen rendered, the override characters reverse the visual ordering of the URL text: the displayed link can differ arbitrarily from the actual destination.\nClassic visual-spoofing / phishing primitive against viewers of sanitized content.\nAffected symfony/html-sanitizer and symfony/symfony versions: >= 6.1.0 and < 6.4.40; >= 7.0.0 and < 7.4.12; >= 8.0.0 and < 8.0.12. Fixed in 6.4.40, 7.4.12 and 8.0.12.",
       "links": [
         {
           "label": "NVD",
@@ -699,7 +727,7 @@
       "vendor": "Symfony",
       "component": "Mailjet Mailer & LOX24 Notifier",
       "title": "Mailjet and LOX24 Webhook Parsers Never Verify the Configured Secret → Unauthenticated Webhook Event Injection",
-      "desc": "Both bridges' doParse() methods received the configured webhook secret but never read it; the payload was decoded and returned unconditionally.\nAny POST to the webhook endpoint was accepted even when a secret was configured, allowing forged bounce / spam / open / click / delivery events — suppression-list corruption, delivery-metrics fraud, etc.\nAffected symfony/mailjet-mailer versions: >= 6.4.0 and < 6.4.40; >= 7.0.0 and < 7.4.12; >= 8.0.0 and < 8.0.12. Fixed in 6.4.40, 7.4.12, and 8.0.12. Affected symfony/lox24-notifier versions: >= 7.1.0 and < 7.4.12; >= 8.0.0 and < 8.0.12. Fixed in 7.4.12 and 8.0.12.",
+      "desc": "Both bridges' doParse() methods received the configured webhook secret but never read it; the payload was decoded and returned unconditionally.\nAny POST to the webhook endpoint was accepted even when a secret was configured, allowing forged bounce / spam / open / click / delivery events: suppression-list corruption, delivery-metrics fraud, etc.\nAffected symfony/mailjet-mailer versions: >= 6.4.0 and < 6.4.40; >= 7.0.0 and < 7.4.12; >= 8.0.0 and < 8.0.12. Fixed in 6.4.40, 7.4.12 and 8.0.12. Affected symfony/lox24-notifier versions: >= 7.1.0 and < 7.4.12; >= 8.0.0 and < 8.0.12. Fixed in 7.4.12 and 8.0.12.",
       "links": [
         {
           "label": "NVD",
@@ -777,7 +805,7 @@
       "vendor": "Symfony",
       "component": "Twilio Notifier",
       "title": "Twilio Webhook Parser Never Verifies the X-Twilio-Signature HMAC → Unauthenticated Webhook Event Injection",
-      "desc": "The Twilio SMS notifier bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Twilio-Signature HMAC header Twilio sends with every request.\nAny POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivered / failed / undelivered status events with downstream impact on metrics and automation triggers. Affected Symfony versions are >= 6.4.0 and < 6.4.40, >= 7.0.0 and < 7.4.12, and >= 8.0.0 and < 8.0.12; fixed in 6.4.40, 7.4.12, and 8.0.12.",
+      "desc": "The Twilio SMS notifier bridge's webhook parser received the configured webhook secret but never read it, ignoring the X-Twilio-Signature HMAC header Twilio sends with every request.\nAny POST to the webhook endpoint was accepted, enabling unauthenticated injection of forged delivered / failed / undelivered status events with downstream impact on metrics and automation triggers. Affected Symfony versions are >= 6.4.0 and < 6.4.40, >= 7.0.0 and < 7.4.12 and >= 8.0.0 and < 8.0.12; fixed in 6.4.40, 7.4.12 and 8.0.12.",
       "links": [
         {
           "label": "NVD",
@@ -837,7 +865,7 @@
       "vendor": "Hugo",
       "component": "resources.GetRemote",
       "title": "security.http.urls Allow-List Bypass via HTTP Redirects → SSRF",
-      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects.\nAn allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid — for example http://localhost/ or an internal IP — and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1.\nFixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
+      "desc": "resources.GetRemote enforced security.http.urls on the URL it was called with, but until v0.162.0 it did not re-validate intermediate URLs on HTTP 3xx redirects.\nAn allowed server (or an attacker controlling its DNS or response) could redirect the request to a host the policy was meant to forbid: for example http://localhost/ or an internal IP: and Hugo would fetch from the redirected target, lifting any host-shape restriction the operator had set. Affected v0.91.0 through v0.161.1.\nFixed in v0.162.0, which installs a CheckRedirect that re-runs the policy on every redirect target and caps the chain at 10 hops.",
       "links": [
         {
           "label": "NVD",
@@ -867,7 +895,7 @@
       "vendor": "MyBB",
       "component": "Default CAPTCHA (class_captcha.php)",
       "title": "Default CAPTCHA Missing Invalidation → Challenge Replay / CAPTCHA Bypass",
-      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics.\nSeveral endpoints — Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php), and Send to Friend (sendthread.php) — never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired. CWE-837 (Improper Enforcement of a Single, Unique Action).\nFixed in MyBB 1.8.40.\nAffected versions: MyBB < 1.8.40.",
+      "desc": "The inbuilt MyBB Default CAPTCHA did not consistently enforce single-use semantics.\nSeveral endpoints: Contact Us (contact.php), Resend Account Activation, Reset Password and Email User (member.php) and Send to Friend (sendthread.php): never called captcha::invalidate_captcha() after a successful validation, allowing remote attackers to reuse the same valid CAPTCHA response across multiple requests and endpoints until it was invalidated elsewhere or expired. CWE-837 (Improper Enforcement of a Single, Unique Action).\nFixed in MyBB 1.8.40.\nAffected versions: MyBB < 1.8.40.",
       "links": [
         {
           "label": "NVD",
@@ -953,7 +981,7 @@
       "vendor": "Drupal",
       "component": "Media module (oEmbed URL discovery)",
       "title": "oEmbed URL Discovery Follows Attacker-Controlled Discovery Links → Server-Side Request Forgery (SSRF)",
-      "desc": "Dynamic oEmbed discovery in the Media module could cause Drupal to fetch an untrusted destination, enabling server-side request forgery. Affected Drupal core: < 10.5.12; >= 10.6.0 and < 10.6.11; >= 11.2.0 and < 11.2.14; >= 11.3.0 and < 11.3.12. Unsupported 11.0.x and 11.1.x are also affected. Upgrade to 10.5.12, 10.6.11, 11.2.14, or 11.3.12, or a later supported release. After updating, sites using dynamic URL discovery must explicitly trust discovery hosts through $settings['media_oembed_discovery_trusted_host_patterns'] in settings.php. Drupal rates this Moderately Critical (10/25). Disclosed as SA-CORE-2026-008 on 2026-06-17.",
+      "desc": "Dynamic oEmbed discovery in the Media module could cause Drupal to fetch an untrusted destination, enabling server-side request forgery. Affected Drupal core: < 10.5.12; >= 10.6.0 and < 10.6.11; >= 11.2.0 and < 11.2.14; >= 11.3.0 and < 11.3.12. Unsupported 11.0.x and 11.1.x are also affected. Upgrade to 10.5.12, 10.6.11, 11.2.14 or 11.3.12 or a later supported release. After updating, sites using dynamic URL discovery must explicitly trust discovery hosts through $settings['media_oembed_discovery_trusted_host_patterns'] in settings.php. Drupal rates this Moderately Critical (10/25). Disclosed as SA-CORE-2026-008 on 2026-06-17.",
       "links": [
         {
           "label": "NVD",
@@ -975,7 +1003,7 @@
       "vendor": "React Router (Remix)",
       "component": "TODO",
       "title": "TODO",
-      "desc": "TODO — embargoed until react-router publishes the fix.",
+      "desc": "TODO: embargoed until react-router publishes the fix.",
       "links": [
         {
           "label": "NVD",
