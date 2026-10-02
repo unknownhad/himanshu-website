@@ -468,13 +468,21 @@
       ]
     },
     {
-      "cve": "GHSA-xcgh-2828-cvmx",
+      "cve": "CVE-2026-103267",
       "severity": "Moderate",
       "vendor": "Ghost",
       "component": "Staff invitations",
       "title": "Staff Invitation Email Validation Bypass",
-      "desc": "Invitation acceptance did not require the accepting email address to match the intended recipient. Possession of a leaked invitation could therefore grant staff access to a different address and undermine email-domain restrictions. Affected ghost versions: >= 0.5.0 and < 6.62.0. Fixed in 6.62.0. CVSS 3.1: 4.3 (Moderate). CWE-807. Published 2026-09-03; the advisory lists no known CVE as of 2026-09-10.",
+      "desc": "Invitation acceptance did not require the accepting email address to match the intended recipient. Possession of a leaked invitation could therefore grant staff access to a different address and undermine email-domain restrictions. Affected ghost versions: >= 0.5.0 and < 6.62.0. Fixed in 6.62.0. CVSS 3.1: 4.3 (Moderate). CWE-807. Published 2026-09-03; CVE-2026-103267 was published on 2026-10-01.",
       "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103267"
+        },
+        {
+          "label": "CVE.org",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-103267"
+        },
         {
           "label": "GHSA",
           "url": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-xcgh-2828-cvmx"
@@ -486,13 +494,21 @@
       ]
     },
     {
-      "cve": "GHSA-qppx-rw6v-xjqf",
+      "cve": "CVE-2026-103266",
       "severity": "High",
       "vendor": "Ghost",
       "component": "Stripe checkout / member accounts / newsletters",
       "title": "Unauthenticated Checkout → Member Account Changes and Newsletter HTML Injection",
-      "desc": "The Stripe checkout flow could associate a subscription with an existing member and modify that member's name without authentication. Unsafe handling of that name in newsletters could also produce HTML injection, with script execution dependent on the mail client. Affected ghost versions: >= 5.2.0 and < 6.62.0. Fixed in 6.62.0. CVSS 3.1: 7.1 (High). CWE-79 and CWE-863. Published 2026-09-03; the advisory lists no known CVE as of 2026-09-10.",
+      "desc": "The Stripe checkout flow could associate a subscription with an existing member and modify that member's name without authentication. Unsafe handling of that name in newsletters could also produce HTML injection, with script execution dependent on the mail client. Affected ghost versions: >= 5.2.0 and < 6.62.0. Fixed in 6.62.0. CVSS 3.1: 7.1 (High). CWE-79 and CWE-863. Published 2026-09-03; CVE-2026-103266 was published on 2026-10-01.",
       "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103266"
+        },
+        {
+          "label": "CVE.org",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-103266"
+        },
         {
           "label": "GHSA",
           "url": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-qppx-rw6v-xjqf"
@@ -504,13 +520,21 @@
       ]
     },
     {
-      "cve": "GHSA-6q6j-f24j-p477",
+      "cve": "CVE-2026-103289",
       "severity": "Moderate",
       "vendor": "Ghost",
       "component": "Comments / authorization",
       "title": "Comment Access-Control Bypass Through Insufficient Input Validation",
-      "desc": "Insufficient validation of input used by the comments feature could allow a member to bypass comment-access authorization. Affected ghost versions: >= 5.9.0 and < 6.44.1. Fixed in 6.44.1. CVSS 3.1: 6.5 (Moderate). CWE-943. Published 2026-08-11; the advisory lists no known CVE as of 2026-09-10.",
+      "desc": "Insufficient validation of input used by the comments feature could allow a member to bypass comment-access authorization. Affected ghost versions: >= 5.9.0 and < 6.44.1. Fixed in 6.44.1. CVSS 3.1: 6.5 (Moderate). CWE-943. Published 2026-08-11; CVE-2026-103289 was published on 2026-10-01.",
       "links": [
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103289"
+        },
+        {
+          "label": "CVE.org",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-103289"
+        },
         {
           "label": "GHSA",
           "url": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-6q6j-f24j-p477"
