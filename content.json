@@ -60,6 +60,17 @@
   ],
   "employer_posts": [
     {
+      "title": "IronChain Ransomware: Wiper-Like Encryption and a BYOVD Kill Chain",
+      "url": "https://any.run/cybersecurity-blog/ironchain-analysis/",
+      "desc": "Static teardown of IronChain's four bundled drivers, broken encryption that discards its own RSA private key, and the bugs that keep the payload alive.",
+      "tags": [
+        "ANY.RUN",
+        "Ransomware",
+        "BYOVD"
+      ],
+      "featured": true
+    },
+    {
       "title": "AI WAF Detected Ivanti Zero-Day",
       "url": "https://blog.cloudflare.com/how-cloudflares-ai-waf-proactively-detected-ivanti-connect-secure-critical-zero-day-vulnerability/",
       "desc": "ML-driven detections in practice.",
