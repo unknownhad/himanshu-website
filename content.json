@@ -324,6 +324,11 @@
   ],
   "media": [
     {
+      "outlet": "The New York Times / Hard Fork",
+      "title": "AI Safety Is So Back + Mythos Mayhem with Nikesh Arora + Hot Mess Express",
+      "url": "https://www.nytimes.com/column/hard-fork"
+    },
+    {
       "outlet": "TechCrunch",
       "title": "WordPress Sites Hijacked to Push Malware",
       "url": "https://techcrunch.com/2025/01/29/hackers-are-hijacking-wordpress-sites-to-push-windows-and-mac-malware/"
@@ -334,6 +339,11 @@
       "url": "https://www.computerworld.com/article/3631627/website-certificates-that-expire-every-six-weeks-what-it-should-know.html"
     },
     {
+      "outlet": "TLDR Tech",
+      "title": "I Had Some Free Time, So I Tried to Pwn V8",
+      "url": "https://tldr.tech/tech/2026-08-27"
+    },
+    {
       "outlet": "The CTO Club",
       "title": "Crush Your New Gig in Cybersecurity From Day One",
       "url": "https://thectoclub.com/team-management-leadership/onboarding-cybersecurity-roles-like-security-engineer/"
@@ -342,6 +352,36 @@
       "outlet": "Cloudflare TV",
       "title": "Security Week: Magecart Attacks",
       "url": "https://cloudflare.tv/shows/security-week/what-launched-today-monday-march-4/dgMY99gD"
+    },
+    {
+      "outlet": "Cyber Security News",
+      "title": "Hackers Compromise Hundreds of WordPress Sites to Deploy Amatera Stealer via ClickFix",
+      "url": "https://cybersecuritynews.com/deploy-amatera-stealer/"
+    },
+    {
+      "outlet": "Cyber Security News",
+      "title": "Hackers Use Fake Student Resume to Secretly Install Malware on Researchers' Computers",
+      "url": "https://cybersecuritynews.com/hackers-use-fake-student-resume/"
+    },
+    {
+      "outlet": "Cyber Security News",
+      "title": "New Magecart Attack Injects Malicious JavaScript to Skim Payment Data",
+      "url": "https://cybersecuritynews.com/new-magecart-attack-inject-malicious-javascript/"
+    },
+    {
+      "outlet": "Cyber Security News",
+      "title": "Threat Actors Mimic HR Departments to Steal Gmail Login Credentials",
+      "url": "https://cybersecuritynews.com/threat-actors-mimic-as-hr-departments/"
+    },
+    {
+      "outlet": "Cyber Security News",
+      "title": "New Magecart Skimmer Attack With Malicious JavaScript Injection",
+      "url": "https://cybersecuritynews.com/new-magecart-skimmer-attack/"
+    },
+    {
+      "outlet": "Cyber Security News",
+      "title": "New Research With PoC Explains Security Nightmares of Coding With LLMs",
+      "url": "https://cybersecuritynews.com/security-nightmares-on-coding-using-llms/"
     }
   ],
   "patents": [
