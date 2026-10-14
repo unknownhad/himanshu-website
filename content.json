@@ -491,6 +491,50 @@
   ],
   "advisories": [
     {
+      "cve": "CVE-2026-70131",
+      "severity": "High",
+      "vendor": "Microsoft",
+      "component": "Windows Media Foundation",
+      "title": "Heap-Based Buffer Overflow → Local Elevation of Privilege",
+      "desc": "A heap-based buffer overflow in Microsoft Windows Media Foundation can allow an unauthorized local attacker to elevate privileges. Microsoft published the vulnerability on 2026-10-13 with CVSS 3.1 score 7.8 (High). Reported to Microsoft by Himanshu Anand; public MSRC researcher acknowledgement was not yet indexed as of 2026-10-14.",
+      "links": [
+        {
+          "label": "Microsoft MSRC",
+          "url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70131"
+        },
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-70131"
+        },
+        {
+          "label": "CVE.org",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-70131"
+        }
+      ]
+    },
+    {
+      "cve": "CVE-2026-70163",
+      "severity": "High",
+      "vendor": "Microsoft",
+      "component": "OpenSSH for Windows",
+      "title": "Unbounded Resource Allocation → Remote Denial of Service",
+      "desc": "Allocation of resources without limits or throttling in OpenSSH for Windows can allow an unauthenticated remote attacker to deny service over the network. Microsoft published the vulnerability on 2026-10-13 with CVSS 3.1 score 7.5 (High) and CWE-770. Reported to Microsoft by Himanshu Anand; public MSRC researcher acknowledgement was not yet indexed as of 2026-10-14.",
+      "links": [
+        {
+          "label": "Microsoft MSRC",
+          "url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70163"
+        },
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-70163"
+        },
+        {
+          "label": "CVE.org",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-70163"
+        }
+      ]
+    },
+    {
       "cve": "Zimbra Collaboration 10.1.21 Security Advisory",
       "severity": "Not specified",
       "vendor": "Zimbra",
