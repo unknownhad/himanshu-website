@@ -1,13 +1,13 @@
 {
   "hero": {
     "tagline": "Security Researcher & Engineer",
-    "current": "Cloudflare",
+    "current": "Security Research",
     "achievement": "3× DEF CON Finalist",
     "ctf_team": "Water Paddlers CTF",
     "ctf_url": "https://ctftime.org/user/144614"
   },
   "about": {
-    "bio_html": "<p>Security researcher with <strong>10+ years</strong> in the field spanning both red and blue teams. I specialize in <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong> and <strong>WAF engineering</strong>.</p><p style=\"margin-top:0.75rem;\">I've worked in SOCs (Tier 1-3), built IPS/IDS signatures and currently focus on web application firewall engineering and cloud-scale threat intelligence at <strong>Cloudflare</strong>. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs, finishing <strong>2nd at DEF CON</strong> three consecutive years (2023-2025).</p>",
+    "bio_html": "<p>Security researcher with <strong>15+ years</strong> in the field across red and blue teams. I work on <strong>malware analysis</strong>, <strong>reverse engineering</strong>, <strong>client-side threat detection</strong> and <strong>WAF engineering</strong>. I also report CVEs in widely used software.</p><p style=\"margin-top:0.75rem;\">I started at <strong>Symantec</strong> in malware and threat research, then handled SOC work (Tier 1 to 3) as a <strong>SOC Analyst at JPMorgan Chase</strong>. After that I built WAF detections at <strong>Cloudflare</strong>, worked on client-side and supply-chain security at <strong>c/side</strong>, then went back to <strong>Cloudflare</strong>. These days I focus on security research, CTFs and writing. I compete with <a href=\"https://ctftime.org/user/144614\" target=\"_blank\" rel=\"noopener noreferrer\">Water Paddlers</a> in CTFs and finished <strong>2nd at DEF CON</strong> three years running (2023 to 2025).</p>",
     "skills": [
       "Malware Analysis",
       "Reverse Engineering",
@@ -26,20 +26,42 @@
     {
       "role": "Firewall Security Analyst",
       "company": "Cloudflare",
-      "period": "Current",
+      "period": "",
       "desc": "WAF rule engineering, zero-day response, client-side threat research and AI-powered detection."
+    },
+    {
+      "role": "Senior Security Researcher / Software Engineer",
+      "company": "c/side",
+      "period": "",
+      "desc": "Client-side and supply-chain security research, skimmer and Magecart detection."
+    },
+    {
+      "role": "Firewall Security Analyst",
+      "company": "Cloudflare",
+      "period": "",
+      "desc": "WAF rule engineering and rapid response to critical CVEs across the network."
+    },
+    {
+      "role": "SOC Analyst",
+      "company": "JPMorgan Chase",
+      "period": "",
+      "desc": "SOC operations across Tier 1 to 3, threat intelligence and threat hunting."
     },
     {
       "role": "Security Researcher",
       "company": "Symantec (now Broadcom)",
-      "period": "Previous",
-      "desc": "Malware analysis, SOC operations, IPS/IDS rule development, exploit analysis and threat intelligence."
+      "period": "",
+      "desc": "Malware analysis, reverse engineering, IPS/IDS rule development and exploit analysis."
     }
   ],
   "stats": [
     {
-      "num": "10+",
+      "num": "15+",
       "label": "Years"
+    },
+    {
+      "num": "20+",
+      "label": "CVEs"
     },
     {
       "num": "30+",
